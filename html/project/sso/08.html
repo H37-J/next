@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>통합 회원 로그인</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+
+<div id="wrap">
+
+	<!--header-->
+	<div id="header">
+		<div class="inner">
+			<h1 class="logo"><a href="#">Bricks</a></h1>
+		</div>
+	</div>
+	<!--//header-->
+	
+	<!--content-->
+	<div id="container">
+		<div class="content chpwd-page">
+			<div class="inner">
+				<p class="txt-type-1">비밀번호 변경</p>
+				<p class="txt-type-2">사용하실 새 비밀번호를 설정해 주세요.</p>
+				<div class="box-login">
+					<div class="ipt-type-1-box line-2">
+						<div class="ipt-type-1">
+							<input type="password" id="password" required="">
+							<label for="password">비밀번호 <span class="hide-txt">(6~16자의 영문, 숫자, 특수문자)</span></label>
+						</div>
+						<p class="txt-error-1 bt-2" style="display:none;">
+<!--							<i class="ico-warning-1"></i> 6~16자의 영문, 숫자, 특수문자(~!@#$%^&*) 조합을 입력해 주세요.-->
+						</p>
+					</div>
+					<div class="ipt-type-1-box mg-1 line-2">
+						<div class="ipt-type-1">
+							<input type="password" id="passwordCheck" required="">
+							<label for="passwordCheck">비밀번호 확인 <span class="hide-txt">(6~16자의 영문, 숫자, 특수문자)</span></label>
+						</div>
+						<p class="txt-error-1 bt-2" style="display:none;">
+<!--							<i class="ico-warning-1"></i> 6~16자의 영문, 숫자, 특수문자(~!@#$%^&*) 조합을 입력해 주세요.-->
+						</p>
+					</div>
+					<div class="btn-wrap mg-4">
+						<a onclick="modifyPasswordApi(); return false" href="#" class="btn-type-1 color-1">재설정 완료</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//content-->
+
+	<!--footer-->
+	<div id="footer">
+		<div class="footer-inner">
+			<div class="inner">
+				<p class="txt-1">© BRICKS EDUCATION</p>
+				<button type="button" class="btn-footer-arrow-1">더보기 <i class="ico-1"></i></button>
+				<p class="hide-txt">
+					(주)사회평론<br>
+					(03993) 서울특별시 마포구 월드컵북로6길 56 사평빌딩&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					대표이사: 윤철호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 최진수&nbsp;&nbsp;&nbsp;&nbsp; <br>
+					Tel: 02-335-7399(주문 및 총판문의) 02-326-1168(교재 내용문의)<br class="pc-hidden">
+					Fax: 02-326-1626 | E-mail : elt@ebricks.co.kr<br>
+					사업자 등록번호:105-81-55677&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					통신판매업 신고번호:2009-서울마포-0921호<br>
+					<br class="m-hidden">
+					<span class="m-hidden">Copyright © BRICKS EDUCATION. All Rights Reserved.</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+
+</div>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/api.js"></script>
+<script>
+</script>
+</body>
+</html>

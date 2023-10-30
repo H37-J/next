@@ -1,0 +1,3 @@
+CREATE DOMAIN phone_number AS VARCHAR(10)
+    NOT NULL
+  CHECK (VALUE ~ '^[0-9]{10}$');

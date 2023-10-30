@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>통합 회원 로그인</title>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <style>
+        .card {
+            margin-top: 10px !important;
+        }
+    </style>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<div id="pop" class="ly-engbus" style="display:block;">
+    <div class="ly-content-box">
+        <div class="ly-content">
+            <p class="tit-1">언어선택</p>
+            <p class="txt-1">반드시 본인에 해당하는 경우를 선택해 주세요.</p>
+            <ul class="lang-list-1">
+                <li onclick="langCheck(this)" lang="ko" class="list-1"><a href="#"><span>내국인</span></a></li>
+                <li onclick="langCheck(this)" lang="en" class="list-2"><a href="#"><span>Foreigner</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="wrap" aria-kor style="display: none">
+
+    <input style="display: none" value="0" id="index"/>
+    <input style="display: none" value="change" id="page"/>
+
+    <!--header-->
+    <div id="header">
+        <div class="inner">
+            <h1 class="logo"><a href="#">Bricks</a></h1>
+        </div>
+    </div>
+    <!--//header-->
+
+    <!--content-->
+    <div id="container">
+        <div class="content combine-page-2">
+            <div class="progress-bar-box">
+                <div class="bar" style="width:25%;"></div>
+            </div>
+            <div class="inner">
+                <p class="txt-type-1">통합 회원 전환</p>
+                <p class="txt-type-2 pc-hidden">Step1. 이용 중인 계정 확인</p>
+                <ul class="list-type-1 m-hidden">
+                    <li class="list-1 active" aria-list>
+                        <span class="txt-1">1</span>
+                        <span class="txt-2">이용 중인 계정 확인</span>
+                    </li>
+                    <li class="list-2" aria-list>
+                        <span class="txt-1">2</span>
+                        <span class="txt-2">약관동의</span>
+                    </li>
+                    <li class="list-3" aria-list>
+                        <span class="txt-1">3</span>
+                        <span class="txt-2">정보수정 및 인증</span>
+                    </li>
+                    <li class="list-4" aria-list>
+                        <span class="txt-1">4</span>
+                        <span class="txt-2">전환 완료</span>
+                    </li>
+                </ul>
+
+                <div class="steps active combine-box-2" aria-step>
+                    <p class="txt-type-7">이용 중인 사이트를 선택 후 통합하고자 하는 계정을 입력해주세요.</p>
+                    <p class="txt-type-8">* 계정을 입력하지 않으시면 이전에 사용하시던 모든 정보와 이력도 사용할 수 없습니다.</p>
+                    <ul class="accountlist-1">
+                        <li id="ebricks_complete_card" style="display: none" class="card">
+                            <div class="list-1">
+                                <p class="txt-1">Ebricks
+                                    <span class="ipt-check-3-box">
+										<input type="checkbox" id="check-3" class="ipt-check-3">
+									</span>
+                                </p>
+                                <p id="ebricks_showId" class="txt-2"></p>
+                            </div>
+                        </li>
+
+                        <li id="ebricks_card" class="card">
+                            <div class="list-3">
+								<span class="ipt-check-5-box">
+									<input type="checkbox" id="iptEbri1" class="ipt-check-5">
+									<label for="iptEbri1">Ebricks</label>
+								</span>
+                            </div>
+                            <!-- D : 체크 후 -->
+                            <div class="list-2" style="display:none;">
+								<span class="ipt-check-4-box mg-1">
+									<input type="checkbox" id="iptEbri2" class="ipt-check-4">
+									<label for="iptEbri2">Ebricks</label>
+								</span>
+                                <div class="box-login-2">
+                                    <div class="ipt-type-s-box">
+                                        <div class="ipt-type-s">
+                                            <input type="password"
+                                                   style="display: none; width:0px; height:0px; border: 0;"
+                                                   @focus="$refs.pwdInput.focus()">
+                                            <input type="text" value="" id="ebricks_id" required="">
+                                            <label for="ebricks_id">ID</label>
+                                        </div>
+                                        <p id="ebricks_id_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 아이디를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="ipt-type-s-box mg-1">
+                                        <div class="ipt-type-s">
+                                            <input type="password"
+                                                   style="display: none; width:0px; height:0px; border: 0;"
+                                                   @focus="$refs.pwdInput.focus()">
+                                            <input value="" type="password" id="ebricks_pw" required="">
+                                            <label for="ebricks_pw">Password</label>
+                                        </div>
+                                        <p id="ebricks_pw_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 비밀번호를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+
+
+                                    <div class="btn-wrap mg-2">
+                                        <a href="#" id="ebricks_button"
+                                           class="btn-type-1 color-5">계정확인</a>
+                                        <a href="#none" class="btn-type-1 color-6" style="display:none;">
+                      <span class="ipt-check-2-box"><input type="checkbox" class="ipt-check-2"
+                                                           checked="checked"><label></label></span> 확인완료
+                                        </a>
+                                    </div>
+                                    <a href="#" class="txt-1">ID/PW 찾기</a>
+                                    <span id="ebricks_message" href="#" class="txt-1" style="color:red;"></span>
+                                    <span id="ebricks_server_error" href="#" class="txt-1"
+                                          style="color:red; display: none">서버에 오류가 발생 하였습니다.</span>
+                                </div>
+                            </div>
+                        </li>
+
+
+                        <li id="hibricks_complete_card" style="display: none" class="card">
+                            <div class="list-1">
+                                <p class="txt-1">hibricks
+                                    <span class="ipt-check-3-box">
+										<input type="checkbox" id="check-4" class="ipt-check-3">
+									</span>
+                                </p>
+                                <p id="hibricks_showId" class="txt-2"></p>
+                            </div>
+                        </li>
+
+                        <li id="hibricks_card" class="card">
+                            <div class="list-3">
+								<span class="ipt-check-5-box">
+									<input type="checkbox" id="iptHib1" class="ipt-check-5">
+									<label for="iptHib1">Hibricks</label>
+								</span>
+                            </div>
+                            <!-- D : 체크 후 -->
+                            <div class="list-2" style="display:none;">
+								<span class="ipt-check-4-box mg-1">
+									<input type="checkbox" id="iptHib2" class="ipt-check-4">
+									<label for="iptHib2">Hibricks</label>
+								</span>
+                                <div class="box-login-2">
+                                    <div class="ipt-type-s-box">
+                                        <div class="ipt-type-s">
+                                            <input type="text" value="" id="hibricks_id" required="">
+                                            <label for="iptId">ID</label>
+                                        </div>
+                                        <p id="hibricks_id_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 아이디를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="ipt-type-s-box mg-1">
+                                        <div class="ipt-type-s">
+                                            <input value="" type="password" id="hibricks_pw" required="">
+                                            <label for="iptPassword">Password</label>
+                                        </div>
+                                        <p id="hibricks_pw_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 비밀번호를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+
+
+                                    <div class="btn-wrap mg-2">
+                                        <a href="#" id="hibricks_button"
+                                           class="btn-type-1 color-5">계정확인</a>
+                                        <a href="#none" class="btn-type-1 color-6" style="display:none;">
+                      <span class="ipt-check-2-box"><input type="checkbox" class="ipt-check-2"
+                                                           checked="checked"><label></label></span> 확인완료
+                                        </a>
+                                    </div>
+                                    <a href="#" class="txt-1">ID/PW 찾기</a>
+                                    <span id="hibricks_message" href="#" class="txt-1" style="color:red;"></span>
+                                    <span id="hibricks_server_error" href="#" class="txt-1"
+                                          style="color:red; display: none">서버에 오류가 발생 하였습니다.</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li id="bus_complete_card" style="display: none" class="card">
+                            <div class="list-1">
+                                <p class="txt-1">English Bus
+                                    <span class="ipt-check-3-box">
+										<input type="checkbox" id="check-4" class="ipt-check-3">
+									</span>
+                                </p>
+                                <p id="bus_showId" class="txt-2"></p>
+                            </div>
+                        </li>
+
+                        <li id="bus_card" class="card">
+                            <div class="list-3">
+								<span class="ipt-check-5-box">
+									<input type="checkbox" id="iptEbo1" class="ipt-check-5">
+									<label for="iptEbo1" class="align-left">English Bus <br>Online</label>
+								</span>
+                            </div>
+                            <!-- D : 체크 후 -->
+                            <div class="list-2" style="display:none;">
+								<span class="ipt-check-4-box mg-1">
+									<input type="checkbox" id="iptEbo2" class="ipt-check-4">
+									<label for="iptEbo2">English Bus Online</label>
+								</span>
+                                <div class="box-login-2">
+                                    <div class="ipt-type-s-box">
+                                        <div class="ipt-type-s">
+                                            <input type="text" id="bus_id" required="">
+                                            <label for="bus_id">ID</label>
+                                        </div>
+                                        <p id="bus_id_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 아이디를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="ipt-type-s-box mg-1">
+                                        <div class="ipt-type-s">
+                                            <input type="password" id="bus_password" required="">
+                                            <label for="bus_password">Password</label>
+                                        </div>
+                                        <p id="bus_pw_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 비밀번호를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="btn-wrap mg-2">
+                                        <a href="#none" id="bus_button" class="btn-type-1 color-5">계정확인</a>
+                                        <a href="#none" class="btn-type-1 color-6" style="display:none;">
+                      <span class="ipt-check-2-box"><input type="checkbox" class="ipt-check-2"
+                                                           checked="checked"><label></label></span> 확인완료
+                                        </a>
+                                    </div>
+                                    <a href="#" class="txt-1">ID/PW 찾기</a>
+                                    <span id="bus_message" href="#" class="txt-1" style="color:red;"></span>
+                                    <span id="bus_server_error" href="#" class="txt-1"
+                                          style="color:red; display: none">서버에 오류가 발생 하였습니다.</span>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li id="starship_complete_card" style="display: none" class="card">
+                            <div class="list-1">
+                                <p class="txt-1">English Bus
+                                    <span class="ipt-check-3-box">
+										<input type="checkbox" id="check-4" class="ipt-check-3">
+									</span>
+                                </p>
+                                <p id="starship_showId" class="txt-2"></p>
+                            </div>
+                        </li>
+
+                        <li id="starship_card" class="card">
+                            <div class="list-3">
+								<span class="ipt-check-5-box">
+									<input type="checkbox" id="iptStar1" class="ipt-check-5">
+									<label for="iptStar1">Starship</label>
+								</span>
+                            </div>
+                            <!-- D : 체크 후 -->
+                            <div class="list-2" style="display:none;">
+								<span class="ipt-check-4-box mg-1">
+									<input type="checkbox" id="iptStar2" class="ipt-check-4">
+									<label for="iptStar2">Starship</label>
+								</span>
+                                <div class="box-login-2">
+                                    <div class="ipt-type-s-box">
+                                        <div class="ipt-type-s">
+                                            <input type="text" id="starship_id" required="">
+                                            <label for="starship_id">ID</label>
+                                        </div>
+                                        <p id="starship_id_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 아이디를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="ipt-type-s-box mg-1">
+                                        <div class="ipt-type-s">
+                                            <input type="password" id="starship_password" required="">
+                                            <label for="starship_password">Password</label>
+                                        </div>
+                                        <p id="starship_pw_error" class="txt-error-1" style="display:none;">
+                                            <i class="ico-warning-1"></i> 비밀번호를 다시 확인해 주세요.
+                                        </p>
+                                    </div>
+                                    <div class="btn-wrap mg-2">
+                                        <a href="#none" id="starship_button" class="btn-type-1 color-5">계정확인</a>
+                                        <a href="#none" class="btn-type-1 color-6" style="display:none;">
+                      <span class="ipt-check-2-box"><input type="checkbox" class="ipt-check-2"
+                                                           checked="checked"><label></label></span> 확인완료
+                                        </a>
+                                    </div>
+                                    <a href="#" class="txt-1">ID/PW 찾기</a>
+                                    <span id="starship_message" href="#" class="txt-1" style="color:red;"></span>
+                                    <span id="starship_server_error" href="#" class="txt-1"
+                                          style="color:red; display: none">서버에 오류가 발생 하였습니다.</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="btn-wrap mg-4">
+                        <a href="#" id="btn-2" class="btn-type-1 color-1 next">다음</a>
+                    </div>
+                </div>
+
+
+                <div class="steps agree-box-1" aria-step style="display: none">
+                    <div class="col-1">
+						<span class="ipt-check-6-box">
+							<input type="checkbox" id="iptAllAgree" class="ipt-check-6 all">
+							<label for="iptAllAgree">전체동의</label>
+						</span>
+                    </div>
+                    <div class="col-2">
+                        <p class="tit-1">필수 동의 항목 <span class="txt-1">*필수항목에 동의하지 않으실 경우 서비스 이용이 불가합니다. </span></p>
+                        <div class="grid-1-1">
+							<span class="ipt-check-7-box">
+								<input type="checkbox" id="iptAgree1" class="ipt-check-7" name="chek-ipt">
+								<label for="iptAgree1">개인정보 수집 및 이용 동의 <a href="#" class="txt-all">전문보기</a></label>
+                                <span id="check1" style="color:rgb(230, 0, 26); display: none; margin-top: 3px"
+                                      class="txt-1">필수항목을 체크 해주세요</span>
+							</span>
+                            <div class="agree-txtbox-1" style="display:none;">
+                                <p><strong>개인정보 수집 및 이용 동의</strong><br>
+                                    ㈜사회평론은 마케팅 및 홍보 등의 활용을 위해 아래와 같이 개인정보를 수집하고 있습니다.<br>
+                                    회원님께서는 ㈜사회평론에서 수집하는 개인정보 활용 동의를 거부할 권리를 가지고 있으며 동의하지 않으셔도 회원가입이 가능합니다.<br>
+                                    하지만 이벤트 및 일부 정보 안내에서 제한될 수 있습니다.<br>
+                                    ㈜사회평론은 마케팅 및 홍보 등의 활용을 위해 아래와 같이 개인정보를 수집하고 있습니다.<br>
+                                    회원님께서는 ㈜사회평론에서 수집하는 개인정보 활용 동의를 거부할 권리를 가지고 있으며 동의하지 않으셔도 회원가입이 가능합니다.<br>
+                                    하지만 이벤트 및 일부 정보 안내에서 제한될 수 있습니다.<br>
+                                    ㈜사회평론은 마케팅 및 홍보 등의 활용을 위해 아래와 같이 개인정보를 수집하고 있습니다.<br>
+                                    회원님께서는 ㈜사회평론에서 수집하는 개인정보 활용 동의를 거부할 권리를 가지고 있으며 동의하지 않으셔도 회원가입이 가능합니다.<br>
+                                    하지만 이벤트 및 일부 정보 안내에서 제한될 수 있습니다.<br>
+                                    <br>
+                                    1. 수집 목적: 마케팅 및 광고성 정보 제공<br>
+                                    2. 수집 항목: 이메일, SMS<br>
+                                    3. 보유 기간: 회원탈퇴 시까지</p>
+                            </div>
+                            <span class="ipt-check-7-box mg-1">
+								<input type="checkbox" id="iptAgree2" class="ipt-check-7" name="chek-ipt">
+								<label for="iptAgree2">통합 이용약관 동의 <a href="#" class="txt-all">전문보기</a></label>
+                                <span st id="check2" style="color:rgb(230, 0, 26); display: none; margin-top: 3px"
+                                      class="txt-1">필수항목을 체크 해주세요</span>
+							</span>
+                            <div class="agree-txtbox-1" style="display:none;">
+                                <p><strong>통합 이용약관 동의</strong><br>
+                                    ㈜사회평론은 마케팅 및 홍보 등의 활용을 위해 아래와 같이 개인정보를 수집하고 있습니다.<br>
+                                    회원님께서는 ㈜사회평론에서 수집하는 개인정보 활용 동의를 거부할 권리를 가지고 있으며 동의하지 않으셔도 회원가입이 가능합니다.<br>
+                                    하지만 이벤트 및 일부 정보 안내에서 제한될 수 있습니다.<br>
+                                    <br>
+                                    1. 수집 목적: 마케팅 및 광고성 정보 제공<br>
+                                    2. 수집 항목: 이메일, SMS<br>
+                                    3. 보유 기간: 회원탈퇴 시까지</p>
+                            </div>
+                        </div>
+                        <p class="tit-1">선택 동의 항목</p>
+                        <div class="grid-1-1">
+							<span class="ipt-check-7-box">
+								<input type="checkbox" id="iptAgree3" class="ipt-check-7">
+								<label for="iptAgree3">마케팅 활용 동의 (
+									<span class="ipt-check-8-box">
+										<input type="checkbox" id="iptSms" class="ipt-check-8">
+										<label for="iptSms">SMS</label>
+									</span> &nbsp;
+									<span class="ipt-check-8-box">
+										<input type="checkbox" id="iptEmail" class="ipt-check-8">
+										<label for="iptEmail">E-mail</label>
+									</span>
+									) <br class="pc-hidden"><a href="#" class="txt-all pd-2">전문보기</a>
+								</label>
+							</span>
+                            <div class="agree-txtbox-1">
+                                <p><strong>마케팅 활용 동의</strong><br>
+                                    ㈜사회평론은 마케팅 및 홍보 등의 활용을 위해 아래와 같이 개인정보를 수집하고 있습니다.<br>
+                                    회원님께서는 ㈜사회평론에서 수집하는 개인정보 활용 동의를 거부할 권리를 가지고 있으며 동의하지 않으셔도 회원가입이 가능합니다.<br>
+                                    하지만 이벤트 및 일부 정보 안내에서 제한될 수 있습니다.<br>
+                                    <br>
+                                    1. 수집 목적: 마케팅 및 광고성 정보 제공<br>
+                                    2. 수집 항목: 이메일, SMS<br>
+                                    3. 보유 기간: 회원탈퇴 시까지</p>
+                            </div>
+                        </div>
+                        <div class="btn-wrap mg-1 wd-2">
+                            <a href="#" class="btn-type-1 color-2 next">다음</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div aria-step style="display: none">
+                    <div class="info-box-1">
+                        <p class="toptxt-1">&bull; 필수 항목</p>
+                        <div class="grid-1">
+                            <div class="col-box">
+                                <div class="col-1 pd-2">회원 구분</div>
+                                <div class="col-2">
+                                    <ul class="list-1 col-type-1">
+                                        <li>
+										<span class="ipt-check-11-box">
+											<input value="S" checked type="radio" name="iptChk"
+                                                   id="iptChk1" class="ipt-check-11">
+											<label for="iptChk1">학생</label>
+										</span>
+                                        </li>
+                                        <li class="wd-1">
+										<span class="ipt-check-11-box">
+											<input value="T" type="radio" name="iptChk"
+                                                   id="iptChk2" class="ipt-check-11">
+											<label for="iptChk2">교/강사</label>
+										</span>
+                                            <div class="select-type-1">
+                                                <div class="select-box">
+                                                    <div class="select-option-box">
+                                                        <input type="text" class="ipt-option" value="직접입력"
+                                                               style="display:none;">
+                                                        <span class="select-option">학교</span>
+                                                    </div>
+                                                    <ul class="option-list">
+                                                        <li><a href="#">학원</a></li>
+                                                        <li><a href="#">공부방</a></li>
+                                                        <li><a href="#">개인교습/과외</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+										<span class="ipt-check-11-box">
+											<input value="I" type="radio" name="iptChk"
+                                                   id="iptChk3" class="ipt-check-11">
+											<label for="iptChk3">기관</label>
+										</span>
+                                        </li>
+                                        <li>
+										<span class="ipt-check-11-box">
+											<input value="P" type="radio" name="iptChk"
+                                                   id="iptChk4" class="ipt-check-11">
+											<label for="iptChk4">학부모</label>
+										</span>
+                                        </li>
+                                        <li>
+										<span class="ipt-check-11-box">
+											<input value="E" type="radio" name="iptChk"
+                                                   id="iptChk5" class="ipt-check-11">
+											<label for="iptChk5">기타</label>
+										</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">이름</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input id="name" maxlength="10" type="text" class="ipt-txt-1">
+                                    </div>
+                                    <p id="name_message" class="txt-error-1" style="display: none"><i
+                                            class="ico-warning-1"></i></p>
+                                    <!--                                    <p id="name_validate_error" class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i>이름은 입력 해주세요.</p>-->
+                                    <!--                                    <p id="name_regex_error" class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i>이름은 문자만 입력 가능합니다.</p>-->
+
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">아이디</div>
+                                <div class="col-2">
+                                    <div class="email-box-1">
+                                        <div class="ipt-type-2-box wd-300">
+                                            <input id="id" maxlength="30" type="text" class="ipt-txt-1">
+                                        </div>
+
+                                        <p id="email_message" class="txt-error-1" style="display: none"><i
+                                                class=""></i></p>
+                                        <!--                                        <p id="email_message" class="txt-info-1" style="display: none"><i-->
+                                        <!--                                                class=""></i>사용 가능한 이메일 입니다.</p>-->
+                                        <!--                                        <p id="email_error1" class="txt-error-1" style="display: none"><i-->
+                                        <!--                                                class="ico-warning-1"></i>이미 사용중인 이메일 입니다.</p>-->
+                                        <!--                                        <p id="email_error2" class="txt-error-1" style="display: none"><i-->
+                                        <!--                                                class="ico-warning-1"></i>이메일 형식을 확인 해주세요.</p>-->
+                                        <!--                                        <p id="email_server_error" class="txt-error-1" style="display: none"><i-->
+                                        <!--                                                class="ico-warning-1"></i>서버에 문제가 있습니다.</p>-->
+                                        <span class="txt-1">@</span>
+                                        <div class="select-type-1 mt-12">
+                                            <div class="select-box">
+                                                <div class="select-option-box">
+                                                    <input id="email_address" type="text" class="ipt-option"
+                                                           value="직접입력"
+                                                           style="display:block;">
+                                                    <span id="email_select" class="select-option"></span>
+                                                </div>
+                                                <ul class="option-list">
+                                                    <li class="self"><a href="#">직접입력</a></li>
+                                                    <li><a href="#">naver.com</a></li>
+                                                    <li><a href="#">gmail.com</a></li>
+                                                    <li><a href="#">daum.net</a></li>
+                                                    <li><a href="#">nate.com</a></li>
+                                                    <li><a href="#">hanmail.net</a></li>
+                                                    <li><a href="#">hotmail.net</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <!-- D : PC에서만 보여지는 버튼 -->
+                                        <div class="btn-wrap">
+                                            <a id="email_duplicate_check" href="#"
+                                               class="btn-type-1 color-5">중복확인</a>
+                                            <!-- D : 인증하기 버튼 후 -->
+                                            <a href="#none" class="btn-type-1 color-6" style="display:none;">
+                                                <i class="ico-type-1"></i>인증 완료
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">비밀번호</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input id="password" maxlength="16" type="password" class="ipt-txt-1">
+                                    </div>
+                                    <p id="password_message" class="txt-error-1" style="display:none;"><i
+                                            class="ico-warning-1"></i></p>
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">생년월일</div>
+                                <div class="col-2">
+                                    <div class="birthday-box">
+                                        <div class="left">
+                                            <div class="ipt-type-2-box wd-1">
+                                                <input maxlength="8" type="text" id="birthday"
+                                                       class="ipt-txt-1" placeholder="ex.19990101">
+                                            </div>
+                                            <span class="txt-1">-</span>
+                                            <div class="ipt-type-2-box wd-2">
+                                                <input maxlength="1" id="jumin" type="text"
+                                                       class="ipt-txt-1">
+                                            </div>
+                                            <div class="ipt-type-2-box wd-3">
+                                                <input type="text" class="ipt-txt-1" disabled>
+                                            </div>
+                                            <!-- D : PC에서만 보여지는 input -->
+                                            <div class="ipt-type-2-box wd-3 only-pc">
+                                                <input type="text" class="ipt-txt-1" disabled>
+                                            </div>
+                                            <div class="ipt-type-2-box wd-3 only-pc">
+                                                <input type="text" class="ipt-txt-1" disabled>
+                                            </div>
+                                            <div class="ipt-type-2-box wd-3 only-pc">
+                                                <input type="text" class="ipt-txt-1" disabled>
+                                            </div>
+                                            <div class="ipt-type-2-box wd-3 only-pc">
+                                                <input type="text" class="ipt-txt-1" disabled>
+                                            </div>
+                                            <div class="ipt-type-2-box wd-3 only-pc">
+                                                <label>
+                                                    <input type="text" class="ipt-txt-1" disabled>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!-- D : 모바일용 텍스트 -->
+                                        <span class="txt-error-1 m-txt" style="display:none;"><i
+                                                class="ico-warning-1"></i> 다시 확인해 주세요.</span>
+                                        <div class="btn-wrap">
+
+
+                                            <a style="display: none" href="#" id="phone_button"
+                                               class="btn-type-1 color-5">법정대리인 <br class="m-hidden">본인인증</a>
+
+
+                                            <!-- D : 본인인증 후 완료 버튼 -->
+                                            <a href="#" class="btn-type-1 color-6" style="display:none;">
+                                                <i class="ico-type-1"></i>법정대리인 <br class="m-hidden">인증 완료
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- D : 태블릿, PC용 텍스트 -->
+                                    <span id="birth_message" class="txt-error-1 pc-txt" style="display:none!important;"><i
+                                            class="ico-warning-1"></i> 생년월일을 다시 확인해 주세요.</span>
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">휴대폰</div>
+                                <div class="col-2">
+                                    <div class="phone-box">
+                                        <div class="col2-1">
+                                            <div class="ipt-type-2-box">
+                                                <input id="phone" type="text" class="ipt-txt-1">
+                                            </div>
+                                            <!-- D : 모바일용 텍스트 -->
+                                            <p class="txt-error-1 m-txt" style="display:none;"><i
+                                                    class="ico-warning-1"></i> 다시 확인해 주세요.</p>
+                                            <div class="btn-wrap">
+                                                <a id="phone_cert_button" href="#" class="btn-type-1 color-5">인증번호
+                                                    발송</a>
+                                                <!-- D : 인증번호 발송 후 완료 버튼 -->
+                                                <a href="#none" class="btn-type-1 color-7" style="display:none;">인증번호
+                                                    발송완료</a>
+                                            </div>
+                                        </div>
+                                        <!-- D : 태블릿, PC용 텍스트 -->
+                                        <p id="phone_message" class="txt-error-1 pc-txt" style="display:none;"><i
+                                                class="ico-warning-1"></i></p>
+
+                                        <div class="col2-1 mg-1">
+                                            <!-- D : 인증번호 발송 전 비활성화 상태-->
+                                            <div class="ipt-txt-1 mt-12 innum-box long-ipt">
+                                                <div class="ipt-type-2-box">
+                                                    <input id="cert_number" type="text" class="ipt-txt-1 bd-1" disabled>
+                                                </div>
+                                                <!-- D : 인증번호 발송 후 -->
+                                                <div class="after-send" style="display: none">
+                                                    <span id="sms_timer" class="time-txt">05:00</span>
+                                                    <a id="cert_resend_button" href="#" class="renum">인증번호 재발송</a>
+                                                </div>
+                                                <div class="btn-wrap">
+                                                    <a href="#" id="cert_check_button" class="btn-type-1 color-8">인증번호
+                                                        확인</a>
+                                                    <!-- D : 인증번호 확인 후  -->
+                                                    <a href="#" class="btn-type-1 color-6" style="display:none;">
+                                                        <i class="ico-type-1"></i>확인 완료
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- D : 태블릿, PC용 텍스트 -->
+                                        <p id="cert_error" class="txt-error-1" style="display:none;"><i
+                                                class="ico-warning-1"></i> 인증번호를 다시
+                                            확인해 주세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="toptxt-2">&bull; 선택 항목</p>
+
+                        <div id="layer"
+                             style=" display: none; position: fixed; overflow: hidden; z-index: 9999; -webkit-overflow-scrolling: touch; ">
+                            <img
+                                    src="//t1.daumcdn.net/postcode/resource/images/close.png"
+                                    id="btnCloseLayer"
+                                    style="
+            cursor: pointer;
+            position: absolute;
+            right: -3px;
+            top: -3px;
+            z-index: 91;
+          "
+                                    onclick="closeDaumPostcode()"
+                                    alt="닫기 버튼"
+                            />
+                        </div>
+
+                        <div class="grid-1">
+                            <div class="col-box">
+                                <div class="col-1">주소</div>
+                                <div class="col-2">
+                                    <div class="col2-1">
+                                        <div class="ipt-type-2-box">
+                                            <input id="address1" type="text" class="ipt-txt-1">
+                                        </div>
+                                        <p class="txt-error-1 m-txt" style="display:none;"><i class="ico-warning-1"></i>
+                                            다시 확인해 주세요.</p>
+                                        <div class="btn-wrap">
+                                            <a id="address_button" href="#" class="btn-type-1 color-5">우편번호 찾기</a>
+                                        </div>
+                                        <input type="hidden" id="postcode">
+                                    </div>
+                                    <!-- D : 태블릿, PC용 텍스트 -->
+                                    <p class="txt-error-1 pc-txt" style="display:none;"><i class="ico-warning-1"></i> 다시
+                                        확인해 주세요.</p>
+                                    <div class="ipt-type-2-box mt-12 mt-40 long-ipt">
+                                        <input id="address2" type="text" class="ipt-txt-1" placeholder="상세주소">
+                                    </div>
+                                    <!-- D : 모바일용 텍스트 -->
+                                    <p class="txt-error-1 m-txt" style="display:none;"><i class="ico-warning-1"></i> 다시
+                                        확인해 주세요.</p>
+                                    <!-- D : 태블릿, PC용 텍스트 -->
+                                    <p class="txt-error-1 pc-txt" style="display:none;"><i class="ico-warning-1"></i> 다시
+                                        확인해 주세요.</p>
+                                </div>
+                            </div>
+                            <div class="col-box">
+                                <div class="col-1">가입목적</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input id="purpose" type="text" class="ipt-txt-1">
+                                    </div>
+                                    <p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> 다시 확인해
+                                        주세요.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-box" style="display: none">
+                                <div class="col-1">자녀 생년월일</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input placeholder="8자리 입력(예.19950101)" id="childBday" type="text"
+                                               class="ipt-txt-1">
+                                    </div>
+                                    <p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> 다시 확인해
+                                        주세요.</p>
+                                </div>
+                            </div>
+
+
+                            <div class="col-box" style="display: none">
+                                <div class="col-1">기관명</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input id="institution" type="text" class="ipt-txt-1">
+                                    </div>
+                                    <p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> 다시 확인해
+                                        주세요.</p>
+                                </div>
+                            </div>
+                            <div class="col-box" style="display: none">
+                                <div class="col-1">기관연락처</div>
+                                <div class="col-2">
+                                    <div class="ipt-type-2-box">
+                                        <input id="institution_phone" type="text" class="ipt-txt-1">
+                                    </div>
+                                    <p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> 다시 확인해
+                                        주세요.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="btn-wrap col-2 col-2-1 mg-4">
+                        <a href="#" class="btn-type-1 color-4 prev">이전</a>
+                        <a href="#" id="btn-4" class="btn-type-1 color-2 next">다음</a>
+                    </div>
+                </div>
+
+                <div class="combine-box-1 pd-2" aria-step style="display: none">
+                    <p class="txt-type-7">통합 회원 전환이 완료되었습니다.</p>
+                    <p class="txt-type-8">이제 하나의 ID로 Bricks의 모든 사이트를 이용하실 수 있습니다.</p>
+                    <div class="btn-wrap mg-4 col-2 col-2-1">
+                        <a href="#" class="btn-type-1 color-5"> 홈으로</a>
+                        <a href="#" class="btn-type-1 color-1">로그인</a>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <!--//content-->
+
+    <!--footer-->
+    <!--    <div id="footer">-->
+    <!--        <div class="footer-inner">-->
+    <!--            <div class="inner">-->
+    <!--                <p class="txt-1">© BRICKS EDUCATION</p>-->
+    <!--                <button type="button" class="btn-footer-arrow-1">더보기 <i class="ico-1"></i></button>-->
+    <!--                <p class="hide-txt">-->
+    <!--                    (주)사회평론<br>-->
+    <!--                    (03993) 서울특별시 마포구 월드컵북로6길 56 사평빌딩&nbsp;&nbsp;&nbsp;<br class="pc-hidden">-->
+    <!--                    대표이사: 윤철호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 최진수&nbsp;&nbsp;&nbsp;&nbsp; <br>-->
+    <!--                    Tel: 02-335-7399(주문 및 총판문의) 02-326-1168(교재 내용문의)<br class="pc-hidden">-->
+    <!--                    Fax: 02-326-1626 | E-mail : elt@ebricks.co.kr<br>-->
+    <!--                    사업자 등록번호:105-81-55677&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br class="pc-hidden">-->
+    <!--                    통신판매업 신고번호:2009-서울마포-0921호<br>-->
+    <!--                    <br class="m-hidden">-->
+    <!--                    <span class="m-hidden">Copyright © BRICKS EDUCATION. All Rights Reserved.</span>-->
+    <!--                </p>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </div>-->
+    <!--//footer-->
+
+</div>
+
+
+<script src="./js/jquery-3.1.0.min.js"></script>
+<script src="./js/common.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        /* 사이트 확인용 */
+        $(".ipt-check-5").on("click", function (e) {
+            var $this = $(this);
+            $this.parent().parent().hide().next().show();
+            $this.parent().parent().hide().next().children().children(".ipt-check-4").prop("checked", true);
+            if ($(".ipt-check-4").is(":checked")) {
+                $("#btn-2").removeClass("color-2").addClass("color-1");
+
+            } else {
+                $("#btn-2").removeClass("color-1").addClass("color-2");
+            }
+            e.preventDefault();
+        });
+        $(".ipt-check-4").on("change", function (e) {
+            var $this = $(this);
+            $this.parent().parent().hide().prev().show();
+            if ($(".ipt-check-4").is(":checked")) {
+                $("#btn-2").removeClass("color-2").addClass("color-1");
+
+            } else {
+                $("#btn-2").removeClass("color-1").addClass("color-2");
+            }
+            e.preventDefault();
+        });
+
+        /* 계정확인 버튼 확인용 */
+        // $(".btn-type-1.color-5").on("click", function(e) {
+        //   var $this = $(this);
+        //   $this.hide().next(".btn-type-1").show();
+        // });
+
+        /* 에러메세지 확인용 */
+        // $(".ipt-type-s > input").on("focus", function() {
+        //   var $this = $(this);
+        //   $this.parent("div").siblings(".txt-error-1").toggle();
+        // });
+        // $(".ipt-type-s > input").on("focusout", function() {
+        //   var $this = $(this);
+        //   $this.parent("div").siblings(".txt-error-1").hide();
+        // });
+
+        $(document).ready(function () {
+            /* 전문보기 */
+            $('.agree-box-1 .txt-all').on('click', function (e) {
+                var $this = $(this);
+                $this.parent().parent().next('.agree-txtbox-1').stop().slideToggle();
+                e.preventDefault();
+            });
+
+            /* 전체 동의 확인용*/
+            $('.agree-box-1 .ipt-check-6').on('change', function () {
+                var $this = $(this),
+                    $ipt1 = $this.parents('.agree-box-1').find('.ipt-check-7'),
+                    $ipt2 = $this.parents('.agree-box-1').find('.ipt-check-8');
+
+                if ($this.hasClass('all')) {
+                    if ($this.prop('checked') == true) {
+                        $ipt1.prop('checked', true);
+                        $ipt2.prop('checked', true);
+                        $('#btn-1').removeClass('color-2').addClass('color-1');
+                    } else {
+                        $ipt1.prop('checked', false);
+                        $ipt2.prop('checked', false);
+                        $('#btn-1').removeClass('color-1').addClass('color-2');
+                    }
+                    ;
+                }
+            });
+
+            /* 필수 동의 항목 확인용 */
+            $('.ipt-check-7-box > input[name="chek-ipt"]').on('change', function () {
+                var $this = $(this);
+                var $thisnext = $this.parent().siblings('.ipt-check-7-box').children('.ipt-check-7');
+                if ($this.prop('checked') == true) {
+                    if ($thisnext.prop('checked') == true) {
+                        $('#btn-1').removeClass('color-2').addClass('color-1');
+                    }
+                } else {
+                    $('#btn-1').removeClass('color-1').addClass('color-2');
+                }
+            });
+
+        });
+    });
+</script>
+
+<script th:inline="javascript">
+    // const hibricks = /*[[${hibricks}]]*/null
+    // const members = /*[[${members}]]*/null
+    // const busonline = /*[[${busonline}]]*/null
+    // const starship = /*[[${starship}]]*/null
+    // const ebricks = /*[[${ebricks}]]*/null
+
+    const hibricks = 'localhost:8085'
+    const ebricks = 'localhost:8080'
+    const busonline = 'localhost:9090'
+    const starship = 'localhost:9091'
+    const members = 'localhost:8083'
+
+
+    let hibricksLoginCheckUrl = hibricks + '/sso/id/check';
+    let ebricksLoginCheckUrl = ebricks + '/sso/id/check'
+    let englishBusLoginCheckUrl = busonline + '/api/login-check.php';
+    let englishStarshipLoginCheckUrl = starship + '/api/login-check.php';
+
+    let emailCheckUrl = members + '/api/v1/member/check-email';
+    let smsCheckUrl = members + '/api/v1/member/cert-phone';
+
+    let changeUrl = members + '/api/v1/member/change';
+    let signUrl = members + '/api/v1/member/join';
+
+</script>
+
+<script src="./js/api.js"></script>
+
+
+</body>
+</html>

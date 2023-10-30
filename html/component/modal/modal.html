@@ -1,0 +1,43 @@
+<html lang="utf-8">
+<head>
+    <title>Modal Component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="ROBOTS" content="NONE">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+    <link rel="stylesheet" href="./modal.css">
+</head>
+
+<body>
+<button id="modal_open_button">모달 열기</button>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <div id="modal_close_button" class="close">&times;</div>
+        <div class="title">비밀번호변경</div>
+
+
+        <input
+                type="password"
+                id="password"
+                value=""
+                class="form-control mb-5 border border-gray-light-v3 rounded-2"
+                placeholder="새로운 비밀번호를 입력 해주세요"
+        />
+
+        <input
+                type="password"
+                id="passwordConfirm"
+                value=""
+                class="form-control mb-5 border border-gray-light-v3 rounded-2"
+                placeholder="비밀번호 확인"
+        />
+
+        <button  class="mt-20  btn btn-success w-80 mb-20" type="submit">비밀번호 변경</button>
+    </div>
+</div>
+
+</body>
+
+<script src="./modal.js"></script>
+</html>

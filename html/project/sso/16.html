@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>통합 회원 로그인</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+</head>
+<body>
+
+<div id="wrap">
+
+	<!--header-->
+	<div id="header">
+		<div class="inner">
+			<h1 class="logo"><a href="#">Bricks</a></h1>
+		</div>
+	</div>
+	<!--//header-->
+	
+	<!--content-->
+	<div id="container">
+		<div class="content withdrawal-page">
+			<div class="inner">
+				<p class="txt-type-1">통합 회원 탈퇴</p>
+				<p class="txt-type-2">회원탈퇴 시 개인정보 및 서비스 이용기록 등의 모든 정보가 즉시 파기되며 복구가 불가능합니다.<br>아래의 유의사항을 반드시 확인하셔서 신중하게 결정해 주시기 바랍니다.</p>
+				<div class="withdrawal-box-1">
+					<p class="txt-type-3 size-2">유의사항</p>
+					<div class="txt-box-1">
+						<ul>
+							<li>
+								<p class="txt-1">1. 회원 탈퇴 처리된 아이디로 재가입은 불가합니다.</p>
+								<p class="txt-2">- 재가입 시 반드시 새로운 아이디로 가입하셔야 합니다.</p>
+							</li>
+							<li>
+								<p class="txt-1">2. 회원 탈퇴 처리 시 서비스의 모든 정보가 삭제됩니다. (게시판형 제외)</p>
+								<p class="txt-2">- 삭제된 정보들은 어떠한 방법으로도 복구할 수 없습니다.</p>
+							</li>
+							<li>
+								<p class="txt-1">3. 게시판형 서비스에 등록한 게시글은 삭제되지 않습니다.</p>
+								<p class="txt-2">- 게시물 삭제를 원하시면 반드시 등록하신 게시물을 먼저 삭제하신 후 탈퇴를 진행해 주시기 바랍니다.<br>
+								(탈퇴 후 본인 여부를 확인할 수 있는 방법이 없어, 게시글을 임의로 삭제해드릴 수 없습니다.)</p>
+							</li>
+						</ul>
+					</div>
+					<p class="agreetxt-1">
+						<span class="ipt-check-9-box mg-1">
+							<input type="checkbox" id="iptAgree" class="ipt-check-9">
+							<label for="iptAgree">위의 내용을 모두 확인하였으며, 회원 탈퇴에 동의합니다.</label>
+						</span>
+					</p>
+					<div class="content-box-1">
+						<div class="col-box-1">
+							<div class="grid-1 pd-2">
+								<div class="left"><p>아이디</p></div>
+								<div class="right"><p>rlatnqls158</p></div>
+							</div>
+							<div class="grid-1">
+								<div class="left"><p>비밀번호</p></div>
+								<div class="right">
+									<div class="ipt-type-2-box">
+										<input type="password" class="ipt-txt-1" placeholder="비밀번호를 입력해주세요.">
+										<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> 다시 확인해 주세요.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-box-1 bottom">
+							<div class="grid-1">
+								<div class="left"><p>탈퇴사유</p></div>
+								<div class="right">
+									<ul class="list-1">
+										<li><span class="ipt-check-10-box"><input type="radio" name="iptReason" id="iptReason1" class="ipt-check-10"><label for="iptReason1">아이디 변경을 위한 탈퇴 후 재가입</label>
+										</span></li>
+										<li><span class="ipt-check-10-box"><input type="radio" name="iptReason" id="iptReason2" class="ipt-check-10"><label for="iptReason2">타 사이트 서비스 이용</label>
+										</span></li>
+										<li><span class="ipt-check-10-box"><input type="radio" name="iptReason" id="iptReason3" class="ipt-check-10"><label for="iptReason3">서비스 자체에 대한 불만족</label>
+										</span></li>
+										<li><span class="ipt-check-10-box"><input type="radio" name="iptReason" id="iptReason4" class="ipt-check-10"><label for="iptReason4">기타</label>
+										</span></li>
+									</ul>
+									<textarea class="textarea-1"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="btn-wrap col-2 col-2-1 mg-1">
+					<a href="#none" class="btn-type-1 color-4">취소</a>
+					<a href="#none" id="btn-1" class="btn-type-1 color-2">탈퇴</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//content-->
+
+	<!--footer-->
+	<div id="footer">
+		<div class="footer-inner">
+			<div class="inner">
+				<p class="txt-1">© BRICKS EDUCATION</p>
+				<button type="button" class="btn-footer-arrow-1">더보기 <i class="ico-1"></i></button>
+				<p class="hide-txt">
+					(주)사회평론<br>
+					(03993) 서울특별시 마포구 월드컵북로6길 56 사평빌딩&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					대표이사: 윤철호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 최진수&nbsp;&nbsp;&nbsp;&nbsp; <br>
+					Tel: 02-335-7399(주문 및 총판문의) 02-326-1168(교재 내용문의)<br class="pc-hidden">
+					Fax: 02-326-1626 | E-mail : elt@ebricks.co.kr<br>
+					사업자 등록번호:105-81-55677&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					통신판매업 신고번호:2009-서울마포-0921호<br>
+					<br class="m-hidden">
+					<span class="m-hidden">Copyright © BRICKS EDUCATION. All Rights Reserved.</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+
+</div>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+	$(document).ready(function(){
+		/* 탈퇴 버튼 확인용 */
+		$('#btn-1').on('click',function(e){
+			var $this = $(this);
+			$this.removeClass('color-2').addClass('color-1');
+			e.preventDefault();
+		});
+	});
+</script>
+</body>
+</html>

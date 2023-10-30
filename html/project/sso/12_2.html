@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>통합 회원 로그인</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+</head>
+<body>
+
+<div id="wrap">
+
+	<!--header-->
+	<div id="header">
+		<div class="inner">
+			<h1 class="logo"><a href="#">Bricks</a></h1>
+		</div>
+	</div>
+	<!--//header-->
+	
+	<!--content-->
+	<div id="container">
+		<div class="content combine-page-2">
+			<div class="progress-bar-box">
+				<div class="bar" style="width:75%;"></div>
+			</div>
+			<div class="inner">
+				<p class="txt-type-1">Membership transition</p>
+				<p class="txt-type-2 pc-hidden">Step3. Information modification <br>and authentication</p>
+				<ul class="list-type-1 m-hidden">
+					<li class="list-1">
+						<span class="txt-1">1</span>
+						<span class="txt-2">Check your account</span>
+					</li>
+					<li class="list-2">
+						<span class="txt-1">2</span>
+						<span class="txt-2">Agreement to terms <br>and conditions</span>
+					</li>
+					<li class="list-3 active">
+						<span class="txt-1">3</span>
+						<span class="txt-2">Information modification and authentication</span>
+					</li>
+					<li class="list-4">
+						<span class="txt-1">4</span>
+						<span class="txt-2">Complete</span>
+					</li>
+				</ul>
+				<div class="info-box-1 eng">
+					<p class="toptxt-1">&bull; Required Fields</p>
+					<div class="grid-1">
+						<div class="col-box">
+							<div class="col-1 pd-2">Member</div>
+							<div class="col-2">
+								<ul class="list-1 col-type-1">
+									<li>
+										<span class="ipt-check-11-box">
+											<input type="radio" name="iptChk" id="iptChk1" class="ipt-check-11">
+											<label for="iptChk1">Student</label>
+										</span>
+									</li>
+									<li class="wd-1">
+										<span class="ipt-check-11-box">
+											<input type="radio" name="iptChk" id="iptChk2" class="ipt-check-11">
+											<label for="iptChk2">Teacher</label>
+										</span>
+										<div class="select-type-1">
+											<div class="select-box">
+												<div class="select-option-box">
+													<input type="text" class="ipt-option" value="직접입력" style="display:none;">
+													<span class="select-option">Select</span>
+												</div>
+												<ul class="option-list">
+													<li><a href="#">학교</a></li>
+													<li><a href="#">학원</a></li>
+													<li><a href="#">공부방</a></li>
+													<li><a href="#">개인교습/과외</a></li>
+												</ul>
+											</div>
+										</div>
+									</li>
+									<li>
+										<span class="ipt-check-11-box">
+											<input type="radio" name="iptChk" id="iptChk3" class="ipt-check-11">
+											<label for="iptChk3">Institute</label>
+										</span>
+									</li>
+									<li>
+										<span class="ipt-check-11-box">
+											<input type="radio" name="iptChk" id="iptChk4" class="ipt-check-11">
+											<label for="iptChk4">Parents</label>
+										</span>
+									</li>
+									<li>
+										<span class="ipt-check-11-box">
+											<input type="radio" name="iptChk" id="iptChk5" class="ipt-check-11">
+											<label for="iptChk5">Etc</label>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">Name</div>
+							<div class="col-2">
+								<div class="name-box-1">
+									<div class="ipt-type-2-box">
+										<input type="text" class="ipt-txt-1" placeholder="First name">
+										<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+									</div>
+									<div class="ipt-type-2-box mg-2">
+										<input type="text" class="ipt-txt-1" placeholder="Last name">
+										<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">ID</div>
+							<div class="col-2">
+								<div class="email-box-1 eng">
+									<div class="ipt-type-2-box wd-300">
+										<input type="text" class="ipt-txt-1" >
+									</div>
+									<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> ID already used.</p>
+									<span class="txt-1">@</span>
+									<div class="select-type-1 mt-12">
+										<div class="select-box">
+											<div class="select-option-box">
+												<input type="text" class="ipt-option" value="직접입력" style="display:none;">
+												<span class="select-option">Select</span>
+											</div>
+											<ul class="option-list">
+												<li><a href="#">naver.com</a></li>
+												<li><a href="#">google.com</a></li>
+												<li><a href="#">daum.net</a></li>
+											</ul>
+										</div>
+									</div>
+									<!-- D : PC에서만 보여지는 버튼 -->
+									<div class="btn-wrap">
+										<a href="#none" id="btn-1" class="btn-type-1 color-5">Send E-mail</a>
+										<!-- D : Send E-mail 보낸 후  -->
+										<a href="#none" class="btn-type-1 color-6" style="display:none;">
+											<i class="ico-type-1"></i>Confirmed
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">Password</div>
+							<div class="col-2">
+								<div class="ipt-type-2-box ">
+									<input type="password" class="ipt-txt-1 pwd-ipt">
+								</div>
+								<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">Country/<br class="pc-hidden-2">Region</div>
+							<div class="col-2">
+								<div class="select-type-1 wd-2 mt-12">
+									<div class="select-box">
+										<div class="select-option-box">
+											<input type="text" class="ipt-option" value="직접입력" style="display:none;">
+											<span class="select-option">Select</span>
+										</div>
+										<ul class="option-list">
+											<li><a href="#">Abkhazia</a></li>
+											<li><a href="#">Afghanistanm</a></li>
+											<li><a href="#">Algeria</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p class="toptxt-2">&bull; Optional Fields</p>
+					<div class="grid-1">
+						
+						<div class="col-box">
+							<div class="col-1">Birth date</div>
+							<div class="col-2">
+								<div class="birthday-box">
+									<div class="left">
+										<div class="ipt-type-2-box wd-1">
+											<input type="text" class="ipt-txt-1" placeholder="ex.990101">
+										</div>
+										<div class="select-type-1 mt-12">
+											<div class="select-box">
+												<div class="select-option-box">
+													<input type="text" class="ipt-option" value="직접입력" style="display:none;">
+													<span class="select-option">Gender</span>
+												</div>
+												<ul class="option-list">
+													<li><a href="#">Female</a></li>
+													<li><a href="#">Male</a></li>
+													<li><a href="#">Other</a></li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!-- D : 생년월일 input 경고 텍스트 -->
+									<span class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">Mobile</div>
+							<div class="col-2">
+								<div class="ipt-type-2-box">
+									<input type="text" class="ipt-txt-1" placeholder="without -">
+								</div>
+								<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1">Address</div>
+							<div class="col-2">
+								<div class="col2-1">
+									<div class="ipt-type-2-box">
+										<input type="text" class="ipt-txt-1" placeholder="Enter Address">
+									</div>
+									<p class="txt-error-1 m-txt" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+								</div>
+								<!-- D : 태블릿, PC용 텍스트 -->
+								<p class="txt-error-1 pc-txt" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+								<div class="ipt-type-2-box mt-12 mt-40 long-ipt">
+									<input type="text" class="ipt-txt-1">
+								</div>
+								<!-- D : 모바일용 텍스트 -->
+								<p class="txt-error-1 m-txt" style="display:none;"><i class="ico-warning-1"></i> Please check</p> 
+								<!-- D : 태블릿, PC용 텍스트 -->
+								<p class="txt-error-1 pc-txt" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+							</div>
+						</div>
+						<div class="col-box">
+							<div class="col-1 pd-2">Purpose of Register</div>
+							<div class="col-2">
+								<div class="ipt-type-2-box wd-2">
+									<input type="text" class="ipt-txt-1">
+								</div>
+								<p class="txt-error-1" style="display:none;"><i class="ico-warning-1"></i> Please check</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="btn-wrap col-2 col-2-1 mg-4">
+					<a href="#none" class="btn-type-1 color-4">Previous</a>
+					<a href="#none" id="btn-4"class="btn-type-1 color-2">Next</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//content-->
+
+	<!--footer-->
+	<div id="footer">
+		<div class="footer-inner">
+			<div class="inner">
+				<p class="txt-1">© BRICKS EDUCATION</p>
+				<button type="button" class="btn-footer-arrow-1">더보기 <i class="ico-1"></i></button>
+				<p class="hide-txt">
+					Social Review, Inc.<br>
+					56, World Cup buk-ro 6-gil, Mapo-gu, Seoul, Republic of Korea 03993<br>
+					Customer Service : +82-2-335-7399 | Fax : 02-326-1626 | E-mail : elt@ebricks.co.kr<br>
+					Business Reg. No. :105-81-55677&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-commerce registration : Mapo No.0921<br>
+					<br class="m-hidden">
+					<span class="m-hidden">Copyright © BRICKS EDUCATION. All Rights Reserved.</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+
+</div>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+	$(document).ready(function(){
+		/* 법정대리인 버튼 확인용 */
+		$('#btn-1').on('click',function(e){
+			var $this = $(this);
+			$this.hide().next('.btn-type-1').show();
+			e.preventDefault();
+		});
+		/* 인증번호 발송 버튼 확인용 */
+		$('#btn-2').on('click',function(e){
+			var $this = $(this);
+			$this.hide().next('.btn-type-1').show();
+			$('#ipt-1').attr("disabled",false);
+			$('.after-send').show();
+			$('#btn-3').removeClass('disabled');
+			e.preventDefault();
+		});
+		/* 인증번호 확인 버튼 확인용 */
+		$('#btn-3').on('click',function(e){
+			var $this = $(this);
+			$this.hide().next('.btn-type-1').show();
+			e.preventDefault();
+		});
+		/* 다음 버튼 확인용 */
+		$('#btn-4').on('click',function(e){
+			var $this = $(this);
+			$this.removeClass('color-2').addClass('color-1');
+			e.preventDefault();
+		});
+		
+		// 통합 회원 전환 에러메세지 확인용
+		// $('.ipt-type-2-box > input').on('focus',function(){
+		// 	var $this = $(this);
+		// 	$this.parents('.col-2').find('.txt-error-1').show();
+		// });
+		// $('.ipt-type-2-box > input').on('focusout',function(){
+		// 	var $this = $(this);
+		// 	$this.parents('.col-2').find('.txt-error-1').hide();
+		// });
+
+	});
+</script>
+</body>
+</html>

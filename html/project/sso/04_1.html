@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>통합 회원 로그인</title>
+<link rel="stylesheet" href="css/style.css">
+<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+</head>
+<body>
+
+<div id="wrap">
+
+	<!--header-->
+	<div id="header">
+		<div class="inner">
+			<h1 class="logo"><a href="#">Bricks</a></h1>
+		</div>
+	</div>
+	<!--//header-->
+	
+	<!--content-->
+	<div id="container">
+		<div class="content findid-page">
+			<div class="inner">
+				<p class="txt-type-1">아이디 찾기</p>
+				<p class="txt-type-2">아이디를 찾기 위해 원하시는 방법을 선택해 주세요.</p>
+				<div class="box-findid">
+					<div class="find-select-box active">
+						<div class="event-box">
+							<p class="txt-type-3">가입 정보로 찾기</p>
+							<p class="txt-type-4">Bricks에 가입된 정보로 아이디를 찾습니다.</p>
+						</div>
+						<div class="hide-box">
+							<div class="ipt-type-1-box">
+								<div class="ipt-type-1">
+									<input type="text" id="iptName" required="">
+									<label for="iptName">이름</label>
+								</div>
+								<p class="txt-error-1" style="display:none;">
+									<i class="ico-warning-1"></i> 이름을 다시 확인해 주세요.
+								</p>
+							</div>
+							<div class="ipt-type-1-box mg-1">
+								<div class="ipt-type-1">
+									<input type="text" id="iptEmail" required="">
+									<label for="iptEmail">이메일/휴대폰</label>
+								</div>
+								<p class="txt-error-1" style="display:none;">
+									<i class="ico-warning-1"></i> 다시 확인해 주세요.
+								</p>
+							</div>
+							<div class="btn-wrap mg-2">
+								<a href="#none" class="btn-type-1 color-1">아이디 찾기</a>
+							</div>
+						</div>
+					</div>
+					<div class="find-select-box">
+						<div class="event-box">
+							<p class="txt-type-3">본인 인증으로 찾기</p>
+							<p class="txt-type-4">휴대폰에 등록된 본인확인정보로 아이디를 찾습니다.</p>
+						</div>
+						<div class="hide-box">
+							<div class="bg-area"></div>
+							<div class="btn-wrap mg-2">
+								<a href="#none" class="btn-type-1 color-1">휴대폰 인증</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//content-->
+
+	<!--footer-->
+	<div id="footer">
+		<div class="footer-inner">
+			<div class="inner">
+				<p class="txt-1">© BRICKS EDUCATION</p>
+				<button type="button" class="btn-footer-arrow-1">더보기 <i class="ico-1"></i></button>
+				<p class="hide-txt">
+					(주)사회평론<br>
+					(03993) 서울특별시 마포구 월드컵북로6길 56 사평빌딩&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					대표이사: 윤철호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 개인정보관리책임자: 최진수&nbsp;&nbsp;&nbsp;&nbsp; <br>
+					Tel: 02-335-7399(주문 및 총판문의) 02-326-1168(교재 내용문의)<br class="pc-hidden">
+					Fax: 02-326-1626 | E-mail : elt@ebricks.co.kr<br>
+					사업자 등록번호:105-81-55677&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br class="pc-hidden">
+					통신판매업 신고번호:2009-서울마포-0921호<br>
+					<br class="m-hidden">
+					<span class="m-hidden">Copyright © BRICKS EDUCATION. All Rights Reserved.</span>
+				</p>
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+
+</div>
+
+<script src="js/jquery-3.1.0.min.js"></script>
+<script src="js/common.js"></script>
+<script>
+	$(document).ready(function(){
+		/* 인증 방법 선택 */
+		$('.find-select-box .event-box').on('click',function(e){
+			var $this = $(this);
+			var $tg = $this.next('.hide-box');
+			$('.box-findid .find-select-box').removeClass('active');
+			$this.parent().addClass('active');
+			e.preventDefault();
+		});
+	});
+</script>
+</body>
+</html>

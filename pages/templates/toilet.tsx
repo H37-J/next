@@ -11,18 +11,17 @@ const Page = () => {
                             <hr style={{borderTop: '1px solid #ddd'}} className="border-0 mx-4"></hr>
                             <div className="flex flex-col justify-center text-center mt-8">
                                 {/* eslint-disable-next-line react/no-unescaped-entities */}
-                                <strong className="text-sm text-slate-800 text-center">"20년 경험의 욕실 전문업체 바로바로
-                                    홈케어"</strong>
+                                <strong className="text-sm text-slate-800 text-center">"20년 경험의 욕실 전문업체 바로바로 홈케어"</strong>
                                 <p className="text-sm text-slate-800">서울, 경기 전 지역 24시간 무료상담 가능합니다.</p>
                             </div>
                         </div>
                         <div className="flex-1">
-                            <Image style={{height: 500}} src="../../assets/images/toilet/1.jpg"
+                            <Image width={410} height={500} src="/assets/images/toilet/1.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="hover:opacity-40 h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
                         <div className="flex-1">
-                            <Image src="../../assets/images/toilet/2.jpeg"
+                            <Image width={410} height={500} src="/assets/images/toilet/2.jpeg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
@@ -30,37 +29,37 @@ const Page = () => {
 
                     <div className="flex flex-1 mt-4 gap-x-1">
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/3.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/3.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/4.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/4.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/5.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/5.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/6.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/6.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/7.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/7.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
-                            <Image style={{height: 202}} src="../../assets/images/toilet/8.jpg"
+                            <Image width={202} height={202} src="/assets/images/toilet/8.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
@@ -70,7 +69,7 @@ const Page = () => {
                     <div className="flex mt-40">
                         <div className="flex flex-col flex-1 justify-center me-10">
                             <div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/3.jpg"
+                                <Image width={596} height={202} src="/assets/images/toilet/3.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -114,7 +113,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">서울 강서</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/3.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/3.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -122,7 +121,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">서울 강동</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/4.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/4.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -130,7 +129,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">서울 중구</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/5.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/5.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -138,7 +137,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">서울 명동</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/6.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/6.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -159,7 +158,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">경기 파주</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 북로 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/3.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/3.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -167,7 +166,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">경기 일산</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/4.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/4.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -175,7 +174,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">경기 김포</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/5.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/5.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -183,7 +182,7 @@ const Page = () => {
                                 <div className="flex-1 font-mono">경기 의정부</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image style={{height: 300}} src="../../assets/images/toilet/6.jpg"
+                                <Image width={300} height={300} src="/assets/images/toilet/6.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
                                        className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
@@ -281,12 +280,12 @@ const Page = () => {
 
                     <div className="flex justify-center gap-x-3">
                         <a target="_blank" href="https://open.kakao.com/o/sE931YOf">
-                            <Image style={{width: 65, height: 65}} src="../../assets/images/toilet/kakao.png"
+                            <Image width={65} height={65} src="/assets/images/toilet/kakao.png"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>
                         <a target="_blank" href="https://blog.naver.com/these9907">
-                            <Image style={{width: 65, height: 65}} src="../../assets/images/toilet/naver3.png"
+                            <Image width={65} height={65} src="/assets/images/toilet/naver3.png"
                                    alt="Front of men&#039;s Basic Tee in black."
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>

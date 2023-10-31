@@ -281,7 +281,7 @@ const Page = () => {
                     <div className="flex justify-center gap-x-3">
                         <a target="_blank" href="https://open.kakao.com/o/sVwN5IPf">
                             <Image width={65} height={65} src="/assets/images/toilet/kakao.png"
-                                   alt="Front of men&#039;s Basic Tee in black."
+                                   alt="Front of men&#039;s Basic Tee in black"
                                    className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>
                         <a target="_blank" href="https://blog.naver.com/these9907">

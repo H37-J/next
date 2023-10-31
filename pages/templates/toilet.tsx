@@ -11,7 +11,8 @@ const Page = () => {
                             <hr style={{borderTop: '1px solid #ddd'}} className="border-0 mx-4"></hr>
                             <div className="flex flex-col justify-center text-center mt-8">
                                 {/* eslint-disable-next-line react/no-unescaped-entities */}
-                                <strong className="text-sm text-slate-800 text-center">"20년 경험의 욕실 전문업체 바로바로 홈케어"</strong>
+                                <strong className="text-sm text-slate-800 text-center">"20년 경험의 욕실 전문업체 바로바로
+                                    홈케어"</strong>
                                 <p className="text-sm text-slate-800">서울, 경기 전 지역 24시간 무료상담 가능합니다.</p>
                             </div>
                         </div>
@@ -223,7 +224,7 @@ const Page = () => {
                                 </div>
                                 <div className="sm:col-span-2">
                                     <label
-                                           className="block text-sm font-semibold leading-6 text-gray-900">상담 내용</label>
+                                        className="block text-sm font-semibold leading-6 text-gray-900">상담 내용</label>
                                     <div className="mt-2.5">
                             <textarea name="message" id="message" rows={4}
                                       className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
@@ -281,8 +282,8 @@ const Page = () => {
                     <div className="flex justify-center gap-x-3">
                         <a target="_blank" href="https://open.kakao.com/o/sE931YOf">
                             <Image style={{width: 65, height: 65}} src="../../assets/images/toilet/kakao.png"
-                                 alt="Front of men&#039;s Basic Tee in black."
-                                 className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   alt="Front of men&#039;s Basic Tee in black."
+                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>
                         <a target="_blank" href="https://blog.naver.com/these9907">
                             <Image style={{width: 65, height: 65}} src="../../assets/images/toilet/naver3.png"
@@ -294,5 +295,6 @@ const Page = () => {
 
             </div>
         </>
-)
+    )
 }
+export default Page;

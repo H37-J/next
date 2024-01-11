@@ -1,0 +1,325 @@
+<html lang="utf-8">
+<head>
+    <title>Modal Component</title>
+    <meta charset="utf-8"/>
+    <meta name="robots" content="noindex,nofollow">
+    <meta name="ROBOTS" content="NONE">
+    <meta name="GOOGLEBOT" content="NOARCHIVE">
+    <link rel="stylesheet" href="./search.css">
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <style>
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .pagination > * {
+
+        }
+
+        .page {
+            font-weight: lighter;
+            cursor: pointer;
+        }
+
+        .prev {
+            cursor: pointer;
+        }
+
+        .next {
+            cursor: pointer;
+        }
+
+        .code {
+            cursor: pointer;
+        }
+
+        .code:hover {
+            background-color: #F3F3F3;
+        }
+
+        .page.active {
+            color: #00A9FF;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-content {
+            display: flex;
+            flex-direction: column;
+            background-color: #FFFFFF;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+
+        .close {
+            display: flex;
+            justify-content: end;
+            color: #aaa;
+            font-size: 22px;
+            font-weight: lighter;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .overflow-x-auto {
+            overflow-x: auto;
+        }
+
+        .-mx-8 {
+            margin-left: -2rem;
+            margin-right: -2rem;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .ps-20 {
+            -webkit-padding-start: 5rem;
+            padding-inline-start: 5rem;
+        }
+
+        .block {
+            display: block;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .border-gray-200 {
+            --tw-border-opacity: 1;
+            border-color: rgb(229 231 235 / var(--tw-border-opacity));
+        }
+
+        .shadow-sm {
+            --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .border-blue-500 {
+            --tw-border-opacity: 1;
+            border-color: rgb(59 130 246 / var(--tw-border-opacity));
+        }
+
+        .ring-blue-500 {
+            --tw-ring-opacity: 1;
+            --tw-ring-color: rgb(59 130 246 / var(--tw-ring-opacity));
+        }
+
+        .opacity-50 {
+            opacity: 0.5;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .inset-y-0 {
+            top: 0px;
+            bottom: 0px;
+        }
+
+        .start-0 {
+            inset-inline-start: 0px;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .text-gray-500 {
+            --tw-text-opacity: 1;
+            color: rgb(107 114 128 / var(--tw-text-opacity));
+        }
+
+        .ps-px {
+            -webkit-padding-start: 1px;
+            padding-inline-start: 1px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .border-transparent {
+            border-color: transparent;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .font-light {
+            font-weight: 300;
+        }
+
+        .border-b {
+            border-bottom-width: 1px;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        .flex-1 {
+            flex: 1
+        }
+
+
+
+
+    </style>
+
+</head>
+
+<body>
+<div style="margin-left: 40px; margin-right: 40px;">
+
+    <button id="modal_open_button">모달 열기</button>
+    <label for="code"></label><input id="code" type="text"
+                                     class="py-3 px-4 block w-9/12 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
+
+
+    <div id="modal" class="modal">
+        <div class="flex flex-1 flex-col overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div style="width: 50%" class="modal-content inline-block py-2 sm:px-6 lg:px-8">
+                <div class="flex">
+                    <div>
+                        <div class="relative">
+                            <input style="padding-left: 126px" type="text" id="search" name="inline-add-on"
+                                   class="py-3 px-4 ps-20 block w-full border-gray-200 shadow-sm rounded-lg text-sm "
+                                   placeholder="">
+                            <div id class="absolute inset-y-0 start-0 flex items-center text-gray-500 ps-px">
+                                <label for="search_select" class="sr-only">검색어선택</label>
+                                <select id="search_select" name="hs-inline-leading-select-country"
+                                        class="block w-full border-transparent rounded-lg focus:ring-blue-600 focus:border-blue-600 dark:bg-gray-800">
+                                    <option selected value="centerName">센터이름</option>
+                                    <option value="ownerName">센터장이름</option>
+                                    <option value="centerCd">센터코드</option>
+                                    <option value="tel">휴대폰번호</option>
+                                    <option value="email">이메일</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-1 justify-end pe-3">
+
+                    </div>
+
+                    <div class="flex flex-1 justify-end pe-3">
+                        <div id="modal_close_button" class="close">&times;</div>
+                    </div>
+                </div>
+
+                <div class="overflow-hidden">
+                    <table class="min-w-full text-center text-sm font-light">
+                        <thead id="thead"
+                               class="border-b font-medium text-neutral-800">
+                        <tr>
+                            <th class="px-6 py-4">센터코드</th>
+                            <th class="px-6 py-4">센터이름</th>
+                            <th class="px-6 py-4">센터장이름</th>
+                            <th class="px-6 py-4">휴대폰번호</th>
+                            <th class="px-6 py-4">이메일</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                    <div id="pagination" class="pagination" style="margin-top: 20px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+
+<script src="./search.js"></script>
+</html>

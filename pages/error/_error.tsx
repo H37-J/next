@@ -1,4 +1,4 @@
-const Error = ({ statusCode } : any) => {
+export const Error = ({ statusCode } : any) => {
     return (
         <p>
             {statusCode
@@ -13,4 +13,3 @@ Error.getInitialProps = ({ res, err }: any) => {
     return { statusCode }
 }
 
-export default Error;

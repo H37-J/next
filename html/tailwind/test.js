@@ -9320,7 +9320,7 @@ In order to be iterable, non-array objects must have a [Symbol.iterator]() metho
                     continue
                 }
                 if (d instanceof RegExp) {
-                    F.warn("root-regex", ["Regular expressions in `safelist` work differently in Tailwind CSS v3.0.", "Update your `safelist` configuration to eliminate this warning.", "https://tailwindcss.com/docs/content-configuration#safelisting-classes"]);
+                    F.warn("root-regex.js", ["Regular expressions in `safelist` work differently in Tailwind CSS v3.0.", "Update your `safelist` configuration to eliminate this warning.", "https://tailwindcss.com/docs/content-configuration#safelisting-classes"]);
                     continue
                 }
                 f.push(d)

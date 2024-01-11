@@ -18,12 +18,12 @@ const Page = () => {
                         <div className="flex-1">
                             <Image width={410} height={500} src="/assets/images/toilet/1.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="hover:opacity-40 h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
                         <div className="flex-1">
                             <Image width={410} height={500} src="/assets/images/toilet/2.jpeg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
                     </div>
 
@@ -31,37 +31,37 @@ const Page = () => {
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/3.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/4.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/5.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/6.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/7.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                         <div className="flex-1">
                             <Image width={202} height={202} src="/assets/images/toilet/8.jpg"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </div>
 
                     </div>
@@ -69,9 +69,9 @@ const Page = () => {
                     <div className="flex mt-40">
                         <div className="flex flex-col flex-1 justify-center me-10">
                             <div>
-                                <Image width={596} height={202} src="/assets/images/toilet/3.jpg"
+                                <Image width={596} height={402} src="/assets/images/toilet/3.jpg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                         </div>
                         <div className="flex flex-1 justify-center">
@@ -113,33 +113,33 @@ const Page = () => {
                                 <div className="flex-1 font-mono">서울 강서</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/3.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/14.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">서울 강동</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/4.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/15.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">서울 중구</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/5.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/24.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">서울 명동</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">서울 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/6.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/17.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                         </div>
                     </div>
@@ -158,33 +158,33 @@ const Page = () => {
                                 <div className="flex-1 font-mono">경기 파주</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 북로 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/3.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/18.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">경기 일산</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/4.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/19.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">경기 김포</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/5.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/23.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                             <div className="flex flex-col flex-1">
                                 <div className="flex-1 font-mono">경기 의정부</div>
                                 <hr style={{borderTop: '1px solid #ddd'}} className="border-0 my-4 me-12"></hr>
                                 <div className="text-sm font-sans mb-5">경기 강서 37번길 1</div>
-                                <Image width={300} height={300} src="/assets/images/toilet/6.jpg"
+                                <Image width={500} height={500} src="/assets/images/toilet/21.jpeg"
                                        alt="Front of men&#039;s Basic Tee in black."
-                                       className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                       className="lg:h-96 hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                             </div>
                         </div>
                     </div>
@@ -282,12 +282,12 @@ const Page = () => {
                         <a target="_blank" href="https://open.kakao.com/o/sVwN5IPf">
                             <Image width={65} height={65} src="/assets/images/toilet/kakao.png"
                                    alt="Front of men&#039;s Basic Tee in black"
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>
                         <a target="_blank" href="https://blog.naver.com/these9907">
                             <Image width={65} height={65} src="/assets/images/toilet/naver3.png"
                                    alt="Front of men&#039;s Basic Tee in black."
-                                   className="h-full w-full object-cover object-center lg:h-full lg:w-full"/>
+                                   className="hover:opacity-40 h-full cursor-pointer w-full object-cover object-center lg:h-full lg:w-full"/>
                         </a>
                     </div>
                 </div>

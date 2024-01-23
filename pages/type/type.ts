@@ -15,7 +15,6 @@ class Type {
 const user = new Type()
 user.age = 3
 user.name = 'hjk'
-console.log(user)
 
 const someClass = class<Type> {
     value: Type
@@ -46,14 +45,9 @@ interface LengthWise {
 }
 
 function loggingIdentity<Type extends LengthWise>(arg: Type): Type {
-    console.log(arg.length)
     return arg
 }
 
-// function loggingIdentityWithError<Type>(arg: Type): Type {
-//     console.log(arg.length)
-//     return arg
-// }
 
 loggingIdentity({length: 10, value: 3})
 
@@ -84,3 +78,7 @@ const combine = <Type>(arr1: Type[], arr2: Type[]): Type[] => {
 }
 
 const arr = combine<number | string>([1,2,3], ['hello'])
+
+const str = ''
+console.log(str?.slice(0, 4))
+

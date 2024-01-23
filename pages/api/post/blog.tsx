@@ -1,0 +1,1 @@
+import {InferGetStaticPropsType} from "next";

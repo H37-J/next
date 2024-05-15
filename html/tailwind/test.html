@@ -2,51 +2,39 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./tailwind.js"></script>
+    <style>
+        .dot {
+            border-top: 1px solid rgb(229, 231, 235) !important;;
+            border-bottom: 1px solid rgb(229, 231, 235) !important;;
+        }
+    </style>
 </head>
 <body>
-<div>
-    <label class="has-[:checked]:bg-indigo-50 has-[:checked]:text-indigo-900 has-[:checked]:ring-indigo-200 ..">
-        check
-        <input type="radio" class="checked:border-indigo-500 ..." />
-    </label>
-</div>
-<div class="grid  grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-    <div>test</div>
-    <div>test</div>
+<div class="flex flex-col p-12 space-y-5">
+    <div class="font-bold text-4xl">수서</div>
+    <div class="space-y-4">
+        <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-1">
+                    <input id="default-checkbox" type="checkbox" value=""
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
+                <div class="text-xl font-normal">교육분야(5개)</div>
+            </div>
+            <div class="text-xl font-normal">2024-05-10</div>
+        </div>
+        <div class="flex justify-between h-32 py-4.">
+            <div>test</div>
+            <div>test</div>
+            <div>test</div>
+            <div>test</div>
+        </div>
+    </div>
+
+    <div class="space-y-4">
+        <div>교육분야(5개)</div>
+    </div>
 </div>
 
-<ol class="list-decimal">
-    <li>Now this is a story all about how, my life got flipped-turned upside down</li>
-    <!-- ... -->
-</ol>
-
-<div class="before:content-['Hello_World']">
-    <!-- ... -->
-</div>
-
-<table class="border-collapse border border-slate-500 ...">
-    <thead>
-    <tr>
-        <th class="border border-slate-600 ...">State</th>
-        <th class="border border-slate-600 ...">City</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td class="border border-slate-700 ...">Indiana</td>
-        <td class="border border-slate-700 ...">Indianapolis</td>
-    </tr>
-    <tr>
-        <td class="border border-slate-700 ...">Ohio</td>
-        <td class="border border-slate-700 ...">Columbus</td>
-    </tr>
-    <tr>
-        <td class="border border-slate-700 ...">Michigan</td>
-        <td class="border border-slate-700 ...">Detroit</td>
-    </tr>
-    </tbody>
-</table>
 
 </body>
 </html>

@@ -9,4 +9,9 @@ const config: Config = {
   plugins: [],
   darkMode: 'class'
 }
+
+module.exports = {
+  darkMode: ['selector', '[data-mode="dark"]'],
+}
+
 export default config

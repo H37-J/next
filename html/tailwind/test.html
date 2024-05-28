@@ -1,8 +1,17 @@
 <!doctype html>
-<html lang="">
+<html class="dark" lang="">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/java/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/selection/active-line.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/edit/matchbrackets.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/monokai.min.css">
     <script src="./tailwind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         tailwind.config = {
             darkMode: 'class'
@@ -16,74 +25,276 @@
     </style>
     <title>H</title>
 </head>
-<body class="bg-white dark:bg-black">
-<div class="bg-white dark:bg-black">
-    <div id="accordion-collapse" data-accordion="collapse">
-        <h2 id="accordion-collapse-heading-1">
-            <button onclick="showModal(this)" type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border  border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                    data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
-                    aria-controls="accordion-collapse-body-1">
-                <span>What is Flowbite?</span>
-                <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                          d="M9 5 5 1 1 5"/>
-                </svg>
-            </button>
-        </h2>
-        <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
-            <div class="p-5 border border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-                <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive
-                    components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a
-                        href="/docs/getting-started/introduction/"
-                        class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing
-                    websites even faster with components on top of Tailwind CSS.</p>
+<body class="bg-white dark:bg-gray-900 w-full h-full">
+<nav id="header"
+     class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+    <div class="px-3 py-3 lg:px-5 lg:pl-3">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center justify-start rtl:justify-end">
+                <button onclick="drawarSidebar(this)" data-drawer-target="sidebar" data-drawer-toggle="sidebar"
+                        aria-controls="sidebar"
+                        type="button"
+                        class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd" fill-rule="evenodd"
+                              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+                    </svg>
+                </button>
+                <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">H</span>
+                </a>
+            </div>
+            <div class="flex items-center relative">
+                <div class="me-4">
+                    <label for="default-search"
+                           class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                      stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                        </div>
+                        <input type="text" id="default-search"
+                               class="outline-none w-80 h-10 block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                               placeholder="검색어를 입력 해주세요" required/>
+
+                    </div>
+                </div>
+                <div class="flex">
+                    <button onclick="toggleBackground(this)"
+                            data-tooltip-target="default-textarea-example-toggle-dark-mode-tooltip" type="button"
+                            data-toggle-dark="dark"
+                            class="flex items-center w-9 h-9 me-3 justify-center text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg toggle-dark-state-example hover:bg-gray-100 hover:text-blue-700 dark:focus:ring-gray-500 dark:bg-gray-800 focus:outline-none dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        <svg data-toggle-icon="moon" class="w-3.5 h-3.5 hidden" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                            <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"></path>
+                        </svg>
+                        <svg data-toggle-icon="sun" class="w-3.5 h-3.5" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-11a1 1 0 0 0 1-1V1a1 1 0 0 0-2 0v2a1 1 0 0 0 1 1Zm0 12a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1ZM4.343 5.757a1 1 0 0 0 1.414-1.414L4.343 2.929a1 1 0 0 0-1.414 1.414l1.414 1.414Zm11.314 8.486a1 1 0 0 0-1.414 1.414l1.414 1.414a1 1 0 0 0 1.414-1.414l-1.414-1.414ZM4 10a1 1 0 0 0-1-1H1a1 1 0 0 0 0 2h2a1 1 0 0 0 1-1Zm15-1h-2a1 1 0 1 0 0 2h2a1 1 0 0 0 0-2ZM4.343 14.243l-1.414 1.414a1 1 0 1 0 1.414 1.414l1.414-1.414a1 1 0 0 0-1.414-1.414ZM14.95 6.05a1 1 0 0 0 .707-.293l1.414-1.414a1 1 0 1 0-1.414-1.414l-1.414 1.414a1 1 0 0 0 .707 1.707Z"></path>
+                        </svg>
+                        <span class="sr-only">Toggle dark/light mode</span>
+                    </button>
+                    <button onclick="toggleDropDown(this)" type="button"
+                            class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                            aria-expanded="false" data-dropdown-target="dropdown-user">
+                        <img class="w-8 h-8 rounded-full"
+                             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                    </button>
+                </div>
+                <div class="z-50 hidden absolute top-8 right-0 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded dark:bg-gray-700 dark:divide-gray-600"
+                     id="dropdown-user">
+                    <div class="px-4 py-3" role="none">
+                        <p class="text-sm text-gray-900 dark:text-white mb-1" role="none">
+                            호종규
+                        </p>
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                            these990712@gmail.com
+                        </p>
+                    </div>
+                    <ul class="py-1" role="none">
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                               role="menuitem">내 정보</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                               role="menuitem">로그아웃</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<aside id="sidebar"
+       class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+       aria-label="sidebar">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+        <ul class="space-y-2 font-medium">
+            <li class="relative">
+                <a onclick="toggleSidebarDropdown(this)" data-dropdown-target="webDropdown" href="#"
+                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="transition-all duration-300 w-2.5 h-2.5 ms-3" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span class="ms-3">Web</span>
+                </a>
+                <div id="webDropdown"
+                     class="hidden mt-1 ms-3 ps-3 divide-y divide-gray-100 rounded-lg w-44 flex flex-col">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 border-s border-gray-700"
+                        aria-labelledby="doubleDropdownButton">
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">APi
+                                테스트</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">크롤링</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">이미지</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="relative">
+                <a onclick="toggleSidebarDropdown(this)" data-dropdown-target="algoDropdown" href="#"
+                   class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <svg class="transition-all duration-300 w-2.5 h-2.5 ms-3" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 6 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 9 4-4-4-4"/>
+                    </svg>
+                    <span class="ms-3">Algorithms</span>
+                </a>
+                <div id="algoDropdown"
+                     class="hidden mt-1 ms-3 ps-3 divide-y divide-gray-100 rounded-lg w-44 flex flex-col">
+                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200 border-s border-gray-700"
+                        aria-labelledby="doubleDropdownButton">
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Java</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                               class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">JavaScript</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+</aside>
+
+<!--이미지-->
+<!--<div class="p-4 sm:ml-64">-->
+<!--    <div class="p-4 mt-14">-->
+<!--        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-4">-->
+<!--            <div>-->
+<!--                <img class="h-auto max-w-full rounded-lg"-->
+<!--                     src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <img class="h-auto max-w-full rounded-lg"-->
+<!--                     src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <img class="h-auto max-w-full rounded-lg"-->
+<!--                     src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="p-8 sm:ml-64 min-h-screen mt-14 relative">
+    <div id="authentication-modal" tabindex="-1" aria-hidden="true"
+         class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+        <div class="relative p-4 w-full max-h-full">
+            <div class="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                <div style="width: 650px" class="code-syntax-wrapper px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                    <textarea id="comment" rows="8"
+                              class="outline-none resize-none w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 dark:text-white "
+                              placeholder="Write a comment..." required></textarea>
+                </div>
+                <div class="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                    <button type="submit"
+                            class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                        Post comment
+                    </button>
+                    <div class="flex ps-0 space-x-1 rtl:space-x-reverse sm:ps-2">
+                        <button type="button"
+                                class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                 viewBox="0 0 12 20">
+                                <path stroke="currentColor" stroke-linejoin="round" stroke-width="2"
+                                      d="M1 6v8a5 5 0 1 0 10 0V4.5a3.5 3.5 0 1 0-7 0V13a2 2 0 0 0 4 0V6"/>
+                            </svg>
+                            <span class="sr-only">Attach file</span>
+                        </button>
+                        <button type="button"
+                                class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                 fill="currentColor" viewBox="0 0 16 20">
+                                <path d="M8 0a7.992 7.992 0 0 0-6.583 12.535 1 1 0 0 0 .12.183l.12.146c.112.145.227.285.326.4l5.245 6.374a1 1 0 0 0 1.545-.003l5.092-6.205c.206-.222.4-.455.578-.7l.127-.155a.934.934 0 0 0 .122-.192A8.001 8.001 0 0 0 8 0Zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/>
+                            </svg>
+                            <span class="sr-only">Set location</span>
+                        </button>
+                        <button type="button"
+                                class="inline-flex justify-center items-center p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600">
+                            <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                 fill="currentColor" viewBox="0 0 20 18">
+                                <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                            </svg>
+                            <span class="sr-only">Upload image</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 
-<img id="avatarButton" type="button" data-dropdown-toggle="userDropdown" data-dropdown-placement="bottom-start" class="w-10 h-10 rounded-full cursor-pointer" src="/docs/images/people/profile-picture-5.jpg" alt="User dropdown">
-
-<!-- Dropdown menu -->
-<div id="userDropdown" class="z-10
- bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-    <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
-        <div>Bonnie Green</div>
-        <div class="font-medium truncate">name@flowbite.com</div>
-    </div>
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
-        <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
-        </li>
-        <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
-        </li>
-        <li>
-            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
-        </li>
-    </ul>
-    <div class="py-1">
-        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
-    </div>
+<div class="fixed end-6 bottom-6 group">
+    <button onclick="showModal()" type="button" data-dial-toggle="speed-dial-menu-click"
+            data-dial-trigger="click"
+            aria-controls="speed-dial-menu-click" aria-expanded="false"
+            class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+        <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true"
+             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 1v16M1 9h16"/>
+        </svg>
+    </button>
 </div>
 
 
 </body>
 <script>
-    window.onload = () => {
-        document.documentElement.classList.add('dark')
+
+    const toggleSidebarDropdown = (_this) => {
+        const id = _this.getAttribute('data-dropdown-target')
+        _this.querySelector('svg').classList.toggle('rotate-90')
+        document.querySelector(`#${id}`).classList.toggle('hidden')
     }
+
+    const toggleDropDown = (_this) => {
+        const id = _this.getAttribute('data-dropdown-target')
+        document.querySelector(`#${id}`).classList.toggle('hidden')
+    }
+
+    const toggleBackground = (_this) => {
+        _this.querySelector('[data-toggle-icon="moon"]').classList.toggle('hidden')
+        _this.querySelector('[data-toggle-icon="sun"]').classList.toggle('hidden')
+        document.documentElement.classList.toggle('dark')
+    }
+
+    const drawarSidebar = (_this) => {
+        const id = _this.getAttribute('data-drawer-target')
+        document.querySelector(`#${id}`).classList.toggle('-translate-x-full')
+    }
+
     const showModal = (_this) => {
-        if (_this.parentElement.nextElementSibling.classList.contains("hidden")) {
-            _this.parentElement.nextElementSibling.classList.remove("hidden")
-        } else {
-            _this.parentElement.nextElementSibling.classList.add("hidden")
-        }
+
     }
+
+
+
+
 </script>
 
 </html>

@@ -1,9 +1,9 @@
 const myHeaders = new Headers()
-const di = 'RC0GCrqGdSIb3c3DdfaA4a4rQIJAyErcerAoag3oNcUrbffefVwffv4tprewrwforfwerwGffrfff4ddfACEevbm2ftVEb%2Bz12urgEUaHnw%3D'
-const ci = 'uUg1zd0ㅇmcd0TlA3dfa34a44fxIQrcaFftdㅊrCDLrlfGearvfXHrewVGf6ffhrewrfwruf3ffffzsKSJgfKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwC8QzBblv%2F%2F%2FTA%3D%3D'
-const name = '김미연'
+const di = 'RC0GCrqGdSIb3c3DdfaA4a4rQIeJdAy3ErcerAoag3oNcUrbffefVwffv4tprewrwforfwerwGffrfff4ddfACEevbm2ftVEb%2Bz12urgEUaHnw%3D'
+const ci = 'uUg1zd0ㅇmcd0TlA3dfa34da44fee3xIQrcaFftdㅊrCDLrlfGearvfXHrewVGf6ffhrewrfwruf3ffffzsKSJgfKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwC8QzBblv%2F%2F%2FTA%3D%3D'
+const name = '김혜연'
 const birthday = '19970302'
-const cel = '0121330434241392'
+const cel = '010302030104'
 const sex = '2'
 
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");

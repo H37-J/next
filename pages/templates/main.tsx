@@ -1,6 +1,6 @@
-import Header from "./templates/header";
-import Sidebar from "./templates/sidebar";
-import Container from "./templates/contents/container";
+import Header from "./header";
+import Sidebar from "./sidebar";
+import Container from "./contents/container";
 
 
 const Page = () => {

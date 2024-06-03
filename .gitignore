@@ -36,8 +36,8 @@ next-env.d.ts
 .env
 
 ./node_modules
-./.idea
 /.idea/modules.xml
 /next.iml
 /.idea/vcs.xml
 /.idea/workspace.xml
+/.idea

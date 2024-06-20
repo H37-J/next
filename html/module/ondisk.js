@@ -1,0 +1,37 @@
+import puppeteer from "puppeteer";
+
+const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: {
+        width: 1200,
+        height: 1440,
+    },
+    protocolTimeout: 620000000,
+    args: ['--disable-infobars'] // 비밀번호 저장 알림창 비활성화
+});
+
+const page = await browser.newPage()
+const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+page.on('dialog', async dialog => {
+    const dialogType = dialog.type()
+    await delay(2000)
+    if (dialogType === 'confirm' || dialogType === 'alert') {
+        await dialog.accept();
+    }
+});
+
+await page.goto('https://www.ondisk.co.kr/index.php')
+await delay(7000)
+await page.type('#mb_id', 'these9902');
+await page.type('#mb_pw', 'star8903');
+await page.click('#page-login > form > fieldset > div > p.btn-login > input[type=image]');
+
+await page.waitForNavigation()
+
+await delay(2000)
+await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&doc=&search=&type=seller&list_max=20&code_cate=&sch_state=&orderis=&sort=&code=&p=8')
+
+await delay(2000)
+await page.click('#mypage_myinfo > table > tbody > tr:nth-child(3) > td:nth-child(1) > input[type=checkbox]')
+await page.click('#mypage_myinfo > form > div > p.right > a:nth-child(2) > img')

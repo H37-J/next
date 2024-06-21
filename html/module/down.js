@@ -1,5 +1,6 @@
-ffmpeg -i "https://www.91mjplay.com/20240311/htVtwrqD/index.m3u8?start=10&end=600" -c copy 1.mp4 &
-ffmpeg -i "https://www.91mjplay.com/20240311/htVtwrqD/index.m3u8?start=610&end=1200" -c copy 2.mp4 &
+ffmpeg -i "https://www.91mjplay.com/20231224/w83Qk60Y/index.m3u8?start=10&end=600" -protocol_whitelist file,http,https,tcp,tls -bufsize 5M -threads 0 -c copy 1.mp4
+
+ffmpeg -i "https://www.91mjplay.com/20231224/w83Qk60Y/index.m3u8?start=10&end=600" -c copy 1.mp4 &
 ffmpeg -i "https://www.91mjplay.com/20240311/htVtwrqD/index.m3u8?start=1210&end=1800" -c copy 3.mp4 &
 ffmpeg -i "https://www.91mjplay.com/20231224/w83Qk60Y/index.m3u8?start=1810&end=2400" -c copy 34.mp4 &
 ffmpeg -i "https://www.91mjplay.com/20231224/w83Qk60Y/index.m3u8?start=2410&end=3000" -c copy 35.mp4 &

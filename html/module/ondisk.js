@@ -18,13 +18,13 @@ page.on('dialog', async dialog => {
     await delay(2000)
     if (dialogType === 'confirm' || dialogType === 'alert') {
         await dialog.accept();
+        await page.reload()
     }
 });
 
 await page.goto('https://www.ondisk.co.kr/index.php')
-await delay(7000)
 await page.type('#mb_id', 'these9902');
-await page.type('#mb_pw', 'star8903');
+await page.type('#page-login > form > fieldset > div > p.ctrl.ctrl-pw > input', 'star8903');
 await page.click('#page-login > form > fieldset > div > p.btn-login > input[type=image]');
 
 await page.waitForNavigation()
@@ -35,3 +35,18 @@ await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&doc=&sear
 await delay(2000)
 await page.click('#mypage_myinfo > table > tbody > tr:nth-child(3) > td:nth-child(1) > input[type=checkbox]')
 await page.click('#mypage_myinfo > form > div > p.right > a:nth-child(2) > img')
+
+
+for(let i = 1; i <= 100; i ++) {
+    let time = 0;
+    if (i === 1) {
+        await delay(1000)
+    } else {
+        await delay(1810000)
+    }
+    console.log(`${i}번째 실행`)
+    await page.click('#mypage_myinfo > table > tbody > tr:nth-child(3) > td:nth-child(1) > input[type=checkbox]')
+    await page.click('#mypage_myinfo > form > div > p.right > a:nth-child(2) > img')
+
+
+}

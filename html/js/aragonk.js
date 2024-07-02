@@ -1,6 +1,6 @@
 const myHeaders = new Headers()
-const di = 'MC0GCCaeSIb3DQeIJAyEAoag7oNoUbVf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
-const ci = 'uUd1zd0adw0Tl34xewIQFtfUFBLlGvXHVG6hu3zsKSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
+const di = 'MC0GCCaeSIb3DQeIJadsadaAyEAoagds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
+const ci = 'uUd1zd0adw0Tldsa34xewdsaddassIQFtfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
 const name = '김수지'
 const birthday = '20010402'
 const cel = '01013404020'
@@ -50,4 +50,63 @@ fetch("https://aragonk.com/xe/modules/join_extend/skins/default_okname/safe_hs_c
     })
     .catch(error => console.log('error', error));
 
+const params = {
+    allow_mailing
+        :
+        "Y",
+    birthday
+        :
+        "20010402",
+    email_address
+        :
+        "norwenr@naver.com",
+    find_account_answer
+        :
+        "rwerw",
+    find_account_question
+        :
+        "1",
+    nick_name
+        :
+        "tt11111",
+    open_id
+        :
+        "Y",
+    open_reg
+        :
+        "Y",
+    open_sex
+        :
+        "Y",
+    open_sm
+        :
+        "Y",
+    password
+        :
+        "star8903",
+    password2
+        :
+        "star8903",
+    reg
+        :
+        "서울",
+    sex
+        :
+        "여성",
+    sm
+        :
+        "Dominant",
+    user_id
+        :
+        "rnowenr",
+    user_name
+        :
+        "김수지",
+    _filter
+        :
+        "signup"
+}
 
+const responses = ['error', 'message', 'redirect_url']
+
+exec_xml('member', 'procMemberInsert', params, '', responses, params, '')

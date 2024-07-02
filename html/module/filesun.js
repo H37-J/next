@@ -38,6 +38,6 @@ for(let i = 1; i <= 100; i ++) {
     }
     console.log(`${i}번째 실행`)
     await page.goto('https://www.filesun.com/disk/my_upload_list')
-    await page.click('#myUploadListF1 > table > tbody > tr:nth-child(1) > td.check > input')
+    await page.click('#myUploadListF1 > table > tbody > tr:nth-child(2) > td.check > input')
     await page.click('#myUploadListPage > div.topBtnPart > div.myupload_btn > a')
 }

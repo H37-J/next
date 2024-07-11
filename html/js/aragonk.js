@@ -1,9 +1,9 @@
 const myHeaders = new Headers()
-const di = 'MC0GCCaeSIb3DQeIJadsadaAyEAoagds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
-const ci = 'uUd1zd0adw0Tldsa34xewdsaddassIQFtfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
+const di = 'MC0GCCaeSsIb3DQdeIJxzczadsadaAyEAoagds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
+const ci = 'uUd1zsd0adw0Tdldsa34xeczxcwdsaddassIQFtfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
 const name = '김수지'
 const birthday = '20010402'
-const cel = '01013404020'
+const cel = '01013403220'
 const sex = '2'
 
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
@@ -37,7 +37,7 @@ fetch("https://aragonk.com/xe/modules/join_extend/skins/default_okname/safe_hs_c
             name: name,
             di: di,
             birthday: birthday,
-            age: 29,
+            age: 23,
             sex: sex,
             cellcompany: 3,
             cell: cel,

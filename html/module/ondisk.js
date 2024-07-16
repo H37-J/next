@@ -1,13 +1,13 @@
 import puppeteer from "puppeteer";
 
 const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     defaultViewport: {
         width: 1200,
         height: 1440,
     },
     protocolTimeout: 620000000,
-    args: ['--disable-infobars'] // 비밀번호 저장 알림창 비활성화
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
 });
 
 const page = await browser.newPage()
@@ -30,7 +30,7 @@ await page.click('#page-login > form > fieldset > div > p.btn-login > input[type
 await page.waitForNavigation()
 
 await delay(2000)
-await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&doc=&search=&type=seller&list_max=20&code_cate=&sch_state=&orderis=&sort=&code=&p=8')
+await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&doc=&search=&type=seller&list_max=20&code_cate=&sch_state=&orderis=&sort=&code=&p=13')
 
 await delay(2000)
 await page.click('#mypage_myinfo > table > tbody > tr:nth-child(3) > td:nth-child(1) > input[type=checkbox]')

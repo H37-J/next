@@ -1,6 +1,6 @@
 const myHeaders = new Headers()
-const di = 'MC0GCCaeSsIb3DQdeIJxzczadsadaAyEAoagcds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
-const ci = 'uUd1zsd0adw0Tdldsa34xeczxcwdsaddassIQFtcfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
+const di = 'MC0GCCaeSsIb3DQcdeIJxzczadsadaAyEAoagcds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
+const ci = 'uUd1zsd0adwc0Tdldsa34xeczxcwdsaddassIQFtcfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
 const name = '김수지'
 const birthday = '20010402'
 const cel = '01013403220'

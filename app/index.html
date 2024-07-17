@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <script src="./tailwind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .dot {
+            border-top: 1px solid rgb(229, 231, 235) !important;;
+            border-bottom: 1px solid rgb(229, 231, 235) !important;;
+        }
+    </style>
+    <title>H</title>
+</head>
+<body>
+
+
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div>test</div>
+    <div>test</div>
+</div>
+
+</body>
+
+<script>
+    const button = document.getElementById('test');
+
+    button.addEventListener('click', () => {
+        window.electronAPI.tt();
+    });
+
+    window.electronAPI.handleClick((event, response) => {
+        console.log(response);
+    });
+
+</script>
+</html>

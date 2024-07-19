@@ -1,7 +1,7 @@
 import puppeteer from "puppeteer";
 
 const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     defaultViewport: {
         width: 1200,
         height: 1440,
@@ -23,6 +23,10 @@ page.on('dialog', async dialog => {
 });
 
 await page.goto('https://www.ondisk.co.kr/index.php')
+await page.click('#footer_appVersion > div > a:nth-child(3)')
+await delay(3000)
+await page.goto('https://www.ondisk.co.kr/index.php')
+await delay(3000)
 await page.type('#mb_id', 'these9902');
 await page.type('#page-login > form > fieldset > div > p.ctrl.ctrl-pw > input', 'star8903');
 await page.click('#page-login > form > fieldset > div > p.btn-login > input[type=image]');

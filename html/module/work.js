@@ -41,11 +41,15 @@ let pageNum = 1
 await page.goto(`https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=${pageNum}&groupId=0`)
 await delay(2000)
 let count = 1
+const comments = ["안녕하세요 잘 보고 갑니다 ㅎㅎ", "와 진짜 글 잘 쓰시네요!", "오늘도 글 잘보고 갑니다ㅎㅎ", "항상 글 잘 보고 있어요ㅎㅎ"
+, "안녕하세요! 추천 누르고 가요 ㅎㅎ 자주 올게요!", "앞으로 자주 올게요 ㅎㅎ"]
+
 for(let i = 1; i <= 10; i++)
 {
     await page.click(`#content > section > div.list_post_article.list_post_article_comments > div:nth-child(${i}) > div > div.info_post > div.desc > a.desc_inner`) // 새로운 탭을 여는 링크 클릭
 
-    await delay(11000)
+    let timeDelay = Math.floor(Math.random() * 9000) + 10000;
+    await delay(timeDelay)
     const pages = await browser.pages()
     const newPage = pages[2]
 
@@ -63,21 +67,22 @@ for(let i = 1; i <= 10; i++)
     const frameHandle = await newPage.$("#mainFrame")
     const frame = await frameHandle.contentFrame();
 
-    await delay(3000)
+    timeDelay = Math.floor(Math.random() * 9000) + 10000;
+    await delay(timeDelay)
 
     if(await frame.$(heart)) {
         frame.click(heart)
     }
-    await delay(3000)
+    timeDelay = Math.floor(Math.random() * 9000) + 10000;
+    await delay(timeDelay)
 
     if(await frame.$(comment)) {
         await frame.click(comment)
-        await delay(12000)
+        await delay(timeDelay)
     }
 
-
-    const cm = "안녕하세요^^ 정성스러운 글 잘 보고 갑니다!\n" +
-        "제 블로그도 한번 방문 해주세요ㅎㅎ 자주 올게요!"
+    const commentIndex = Math.floor(Math.random() * 5)
+    const cm = comments[commentIndex]
 
     if(await frame.$(ment)) {
         await frame.type(ment, cm)
@@ -98,11 +103,13 @@ for(let i = 1; i <= 10; i++)
         pageNum += 1
         await page.goto(`https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=${pageNum}&groupId=0`)
         console.log(page.url())
+        timeDelay = Math.floor(Math.random() * 1000) + 10000;
         await delay(4000)
         i = 1
     }
 }
 
+// TLSWLDUS1@
 
 
 // const [newPage] = await Promise.all([

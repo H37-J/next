@@ -42,7 +42,7 @@ async function translateText(text, sourceLang, targetLang) {
 
 let count = 1;
 // 23118
-for(let i = 23087; i >= 1; i--) {
+for(let i = 23040; i >= 1; i--) {
     await page.setDefaultNavigationTimeout(0);
     const url = `https://www.92mj4.com/points-12-${i}-1.html`
     await page.goto(url)

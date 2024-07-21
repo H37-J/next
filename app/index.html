@@ -14,6 +14,15 @@
             border-top: 1px solid rgb(229, 231, 235) !important;;
             border-bottom: 1px solid rgb(229, 231, 235) !important;;
         }
+
+        * {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        ::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
     </style>
     <title>H</title>
 </head>
@@ -22,17 +31,17 @@
     <div class="flex flex-col bg-neutral-900 rounded p-8">
         <h1>로그인</h1>
         <div class="flex flex-col mt-4">
-            <label for="user_id" class="block mb-2 text-sm text-white">검색어</label>
+            <label for="keyword" class="block mb-2 text-sm text-white">검색어</label>
             <div>
-                <input id="user_id" placeholder="검색어를 입력 해주세요."
+                <input id="keyword" placeholder="검색어를 입력 해주세요."
                        class="bg-neutral-800 border border-neutral-800 rounded p-1.5 text-sm w-full outline-none focus:border-blue-500 focus:ring-blue-500 "
                        type="text">
             </div>
         </div>
         <div class="flex flex-col mt-12">
-            <label for="password" class="block mb-2 text-sm text-white">페이지수</label>
+            <label for="paging" class="block mb-2 text-sm text-white">페이지수</label>
             <div>
-                <input id="password" placeholder="크롤링 할 페이지수를 입력 해주세요."
+                <input id="paging" placeholder="크롤링 할 페이지수를 입력 해주세요."
                        class="bg-neutral-800 border border-neutral-800 rounded p-1.5 text-sm w-full outline-none focus:border-blue-500 focus:ring-blue-500"
                        type="text">
             </div>
@@ -43,7 +52,7 @@
                 <select id="category1"
                         class="text-sm rounded-lg block w-full p-2.5 bg-neutral-800 outline-none focus:border-blue-500 focus:border-ring-500">
                     <option selected>정렬순서를 입력 해주세요</option>
-                    <option value="rank">쿠팡 랭킹순</option>
+                    <option value="scoreDesc">쿠팡 랭킹순</option>
                     <option value="priceAsc">낮은 가격순</option>
                     <option value="priceDesc">높은 가격순</option>
                     <option value="sale">판매량순</option>
@@ -61,10 +70,10 @@
             <!--                </select>-->
             <!--            </div>-->
         </div>
-        <button onclick="window.electronAPI.crawling('맥북', 'scoreDesc', 10)" class="w-full p-3 text-white bg-blue-500 rounded mt-12">크롤링 시작</button>
+        <button onclick="window.electronAPI.crawling()" class="w-full p-3 text-white bg-blue-500 rounded mt-12">크롤링 시작</button>
 
         <div class="flex flex-1 border border-gray-600 mt-12 p-3 break-words">
-            <div>
+            <div id="terminal">
                 <p class="whitespace-pre-line"><span id="time">2024-07-19 08:16:04 - </span> <span id="command">shell exec...</span>
                 </p>
             </div>
@@ -94,253 +103,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
-            <tr class="border-b border-neutral-800 bg-black hover:bg-gray-50 dark:hover:bg-gray-600">
-                <td class="p-4">
-                    <img src="https://thumbnail7.coupangcdn.com/thumbnails/remote/230x230ex/image/retail/images/889188848491873-0b0a09d6-86fe-4789-9c25-ef6e2e57ee7c.jpg"
-                         class="w-16 h-auto"
-                         alt="Apple Watch">
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    Apple Watch
-                </td>
-                <td class="px-6 py-4">
-                    2,193,031
-                </td>
-                <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
-                    193
-                </td>
-                <td class="px-6 py-4">
-                    1
-                </td>
-            </tr>
+
             </tbody>
         </table>
     </div>

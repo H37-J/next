@@ -24,7 +24,7 @@
             display: none; /* Chrome, Safari, Opera */
         }
     </style>
-    <title>H</title>
+    <title>쿠팡 크롤링</title>
 </head>
 <body class="bg-white dark:bg-black w-full h-full">
 <div class="grid grid-cols-3 gap-4 text-white p-2 h-full">
@@ -41,7 +41,7 @@
         <div class="flex flex-col mt-12">
             <label for="paging" class="block mb-2 text-sm text-white">페이지수</label>
             <div>
-                <input id="paging" placeholder="크롤링 할 페이지수를 입력 해주세요."
+                <input id="paging" value="1" placeholder="크롤링 할 페이지수를 입력 해주세요."
                        class="bg-neutral-800 border border-neutral-800 rounded p-1.5 text-sm w-full outline-none focus:border-blue-500 focus:ring-blue-500"
                        type="text">
             </div>
@@ -51,8 +51,7 @@
                 <label for="category1" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">정렬순서</label>
                 <select id="category1"
                         class="text-sm rounded-lg block w-full p-2.5 bg-neutral-800 outline-none focus:border-blue-500 focus:border-ring-500">
-                    <option selected>정렬순서를 입력 해주세요</option>
-                    <option value="scoreDesc">쿠팡 랭킹순</option>
+                    <option selected value="scoreDesc">쿠팡 랭킹순</option>
                     <option value="priceAsc">낮은 가격순</option>
                     <option value="priceDesc">높은 가격순</option>
                     <option value="sale">판매량순</option>
@@ -73,9 +72,7 @@
         <button onclick="window.electronAPI.crawling()" class="w-full p-3 text-white bg-blue-500 rounded mt-12">크롤링 시작</button>
 
         <div class="flex flex-1 border border-gray-600 mt-12 p-3 break-words">
-            <div id="terminal">
-                <p class="whitespace-pre-line"><span id="time">2024-07-19 08:16:04 - </span> <span id="command">shell exec...</span>
-                </p>
+            <div id="terminal" class="space-y-2">
             </div>
         </div>
     </div>

@@ -1,6 +1,9 @@
 const {contextBridge, ipcRenderer} = require('electron');
 const axios = require('axios');
 const puppeteer = require('puppeteer')
+const extra = require('puppeteer-extra')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const AdblockerPlugin  = require('puppeteer-extra-plugin-adblocker')
 
 
 
@@ -15,34 +18,39 @@ contextBridge.exposeInMainWorld('electronAPI', {
 const $ = document.querySelector.bind(document)
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
+extra.use(StealthPlugin());
+extra.use(AdblockerPlugin());
 
 const crawling = async () => {
 
-    // const keyword = $("#keyword").value
-    // const sort = $('#category1').value
-    // const paging = $('#paging').value
+    const keyword = $("#keyword").value
+    const sort = $('#category1').value
+    const paging = $('#paging').value
 
-    const keyword = '맥북'
-    const sort = 'scoreDesc'
-    const paging = 3
-
-
+    // const keyword = '맥북'
+    // const sort = 'scoreDesc'
+    // const paging = 3
 
 
-
-
+    let count = 0
     let rank = 1
+    $('tbody').innerHTML = ''
+    $('#terminal').innerHTML = ''
+    addCommand('페이지 접속중...')
     for(let p = 1; p <= paging; p++) {
         const browser = await puppeteer.launch({
             headless: false,
             defaultViewport: {
-                width: 1200,
-                height: 1440
+                width: 0,
+                height: 0
             },
-            protocolTimeout: 620000000
+            protocolTimeout: 620000000,
+            args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
-
+        const ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36';
         const page = await browser.newPage()
+        page.setUserAgent(ua);
+
 
         let url = 'https://www.coupang.com/np/search'
         url = new URL(url)
@@ -54,8 +62,10 @@ const crawling = async () => {
         url = url.toString()
         console.log(keyword, sort, p, url)
 
+
+        addCommand(`${p}번째 페이지 크롤링 진행중...`)
         await page.goto(url)
-        await delay(5000)
+        await page.waitForSelector('#productList li.search-product:not(.search-product__ad-badge)')
 
         let element
         const list = await page.$('#productList')
@@ -73,7 +83,6 @@ const crawling = async () => {
         })
 
         const tbody = $('tbody')
-        console.log(names)
         for(let i = 0; i < names.length; i++) {
             const tr = document.createElement('tr')
             tr.classList = 'border-b border-neutral-800 bg-black hover:bg-gray-600 cursor-pointer'
@@ -94,30 +103,40 @@ const crawling = async () => {
             td2.textContent = names[i]
             td3.textContent = prices[i]
             td4.textContent = rates[i]
-            td5.textContent = rank
+            td5.textContent = count + 1
             tr.appendChild(td1)
             tr.appendChild(td2)
             tr.appendChild(td3)
             tr.appendChild(td4)
             tr.appendChild(td5)
             tbody.appendChild(tr)
-            rank++
+            count++
 
-            const p = document.createElement('p')
-            const time = document.createElement('span')
-            const exec = document.createElement('span')
-            let now = new Date();
-            now = now.toISOString().slice(0, 19).replace('T', ' ');
-            const terminal = $('#terminal')
-            const command =  $('command')
-
-
+            // addCommand(`${rank}개 수집 완료`)
         }
+        addCommand(`${p}번째 페이지 ${names.length}개 수집 완료 하였습니다.`)
         await page.close()
         await browser.close()
     }
+    addCommand(`총 ${count}개 크롤링이 완료 되었습니다.`)
 
     await delay(5000)
+}
+
+const addCommand = (commandExec = 'test') => {
+    const p = document.createElement('p')
+    const time = document.createElement('span')
+    const command = document.createElement('span')
+    let now = new Date();
+    now = new Date(now.getTime() + 9 * 60 * 60 * 1000)
+    now = now.toISOString().slice(0, 19).replace('T', ' ') + ' - ';
+    const terminal = $('#terminal')
+    p.classList = 'whitespace-pre-line'
+    time.textContent = now
+    command.textContent = commandExec
+    p.appendChild(time)
+    p.appendChild(command)
+    terminal.appendChild(p)
 }
 
 

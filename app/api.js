@@ -27,19 +27,27 @@ const crawling = async () => {
     const sort = $('#category1').value
     const paging = $('#paging').value
 
+    if(!keyword) {
+        alert('검색어를 입력 해주세요.')
+        return
+    }
+    if(!paging) {
+        alert('페이지수를 입력 해주세요')
+        return
+    }
+
     // const keyword = '맥북'
     // const sort = 'scoreDesc'
     // const paging = 3
 
 
     let count = 0
-    let rank = 1
     $('tbody').innerHTML = ''
     $('#terminal').innerHTML = ''
     addCommand('페이지 접속중...')
     for(let p = 1; p <= paging; p++) {
         const browser = await puppeteer.launch({
-            headless: false,
+            headless: 'new',
             defaultViewport: {
                 width: 0,
                 height: 0
@@ -66,6 +74,7 @@ const crawling = async () => {
         addCommand(`${p}번째 페이지 크롤링 진행중...`)
         await page.goto(url)
         await page.waitForSelector('#productList li.search-product:not(.search-product__ad-badge)')
+        await delay(3000)
 
         let element
         const list = await page.$('#productList')

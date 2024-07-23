@@ -3,8 +3,8 @@ const path = require('path')
 
 function createWindow () {
     const win = new BrowserWindow({
-        width: 1440,
-        height: 1200,
+        width: 1840,
+        height: 1300,
         webPreferences: {
             preload: path.join(__dirname, 'api.js'),
             nodeIntegration: true,
@@ -13,7 +13,7 @@ function createWindow () {
     })
 
     win.loadFile('index.html')
-    win.webContents.openDevTools();
+    win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {

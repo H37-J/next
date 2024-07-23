@@ -3,14 +3,15 @@ const axios = require('axios');
 const puppeteer = require('puppeteer')
 const extra = require('puppeteer-extra')
 const StealthPlugin = require('puppeteer-extra-plugin-stealth')
-const AdblockerPlugin  = require('puppeteer-extra-plugin-adblocker')
-
+const AdblockerPlugin = require('puppeteer-extra-plugin-adblocker')
+const XLSX = require("xlsx");
 
 
 contextBridge.exposeInMainWorld('electronAPI', {
     handleClick: (callback) => ipcRenderer.on('button-click', callback),
     sendClick: () => ipcRenderer.send('button-click'),
     crawling: () => crawling(),
+    excel: () => excel(),
     someValue: 'Hello from preload'
 });
 
@@ -21,31 +22,32 @@ const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 extra.use(StealthPlugin());
 extra.use(AdblockerPlugin());
 
+let datas = []
+
 const crawling = async () => {
+    datas = []
 
     const keyword = $("#keyword").value
     const sort = $('#category1').value
     const paging = $('#paging').value
 
-    if(!keyword) {
+    if (!keyword) {
         alert('검색어를 입력 해주세요.')
         return
     }
-    if(!paging) {
+    if (!paging) {
         alert('페이지수를 입력 해주세요')
         return
     }
-
-    // const keyword = '맥북'
-    // const sort = 'scoreDesc'
-    // const paging = 3
 
 
     let count = 0
     $('tbody').innerHTML = ''
     $('#terminal').innerHTML = ''
     addCommand('페이지 접속중...')
-    for(let p = 1; p <= paging; p++) {
+    disableButton($('#crawlButton'))
+    $('#excelButton').classList.add('hidden')
+    for (let p = 1; p <= paging; p++) {
         const browser = await puppeteer.launch({
             headless: 'new',
             defaultViewport: {
@@ -56,6 +58,7 @@ const crawling = async () => {
             args: ['--no-sandbox', '--disable-setuid-sandbox']
         })
         const ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36';
+
         const page = await browser.newPage()
         page.setUserAgent(ua);
 
@@ -72,9 +75,9 @@ const crawling = async () => {
 
 
         addCommand(`${p}번째 페이지 크롤링 진행중...`)
-        await page.goto(url)
-        await page.waitForSelector('#productList li.search-product:not(.search-product__ad-badge)')
-        await delay(3000)
+        await page.goto(url, {waitUntil: 'networkidle2'})
+        // await page.waitForSelector('#productList li.search-product:not(.search-product__ad-badge) .search-product-wrap-img')
+        await delay(1000)
 
         let element
         const list = await page.$('#productList')
@@ -92,7 +95,7 @@ const crawling = async () => {
         })
 
         const tbody = $('tbody')
-        for(let i = 0; i < names.length; i++) {
+        for (let i = 0; i < names.length; i++) {
             const tr = document.createElement('tr')
             tr.classList = 'border-b border-neutral-800 bg-black hover:bg-gray-600 cursor-pointer'
             const td1 = document.createElement('td')
@@ -111,7 +114,15 @@ const crawling = async () => {
             td1.appendChild(img)
             td2.textContent = names[i]
             td3.textContent = prices[i]
-            td4.textContent = rates[i]
+
+            let rate = ''
+            if (rates[i]) {
+                rate = rates[i].replace('(', '').replace(')', '')
+            } else if(!rates[i]) {
+                rate = '리뷰 없음'
+            }
+
+            td4.textContent = rate
             td5.textContent = count + 1
             tr.appendChild(td1)
             tr.appendChild(td2)
@@ -121,6 +132,15 @@ const crawling = async () => {
             tbody.appendChild(tr)
             count++
 
+            const data = {
+                이미지: images[i],
+                상품이름: names[i].trimStart(),
+                가격: prices[i],
+                리뷰수: rate,
+                노출순위: count
+            }
+            datas.push(data)
+
             // addCommand(`${rank}개 수집 완료`)
         }
         addCommand(`${p}번째 페이지 ${names.length}개 수집 완료 하였습니다.`)
@@ -128,8 +148,8 @@ const crawling = async () => {
         await browser.close()
     }
     addCommand(`총 ${count}개 크롤링이 완료 되었습니다.`)
-
-    await delay(5000)
+    ableButton($('#crawlButton'))
+    $('#excelButton').classList.remove('hidden')
 }
 
 const addCommand = (commandExec = 'test') => {
@@ -146,6 +166,29 @@ const addCommand = (commandExec = 'test') => {
     p.appendChild(time)
     p.appendChild(command)
     terminal.appendChild(p)
+}
+
+const excel = () => {
+    if(!datas.length === 0) alert('추출할 데이터가 없습니다.')
+    const worksheet = XLSX.utils.json_to_sheet(datas);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet 1');
+    XLSX.writeFile(workbook, '결과.xlsx');
+    alert('엑셀 추출이 완료 되었습니다.')
+}
+
+const disableButton = (button) => {
+    button.textContent = '크롤링 진행중...'
+    button.disabled = true
+    button.style.opacity = 0.8
+    button.style.cursor = 'not-allowed'
+}
+
+const ableButton = (button) => {
+    button.textContent = '크롤링 시작'
+    button.disabled = false
+    button.style.opacity = 1
+    button.style.cursor = 'pointer'
 }
 
 

@@ -1,18 +1,19 @@
 const { app, BrowserWindow,ipcMain } = require('electron')
 const path = require('path')
 
-function createWindow () {
+const createWindow = () => {
     const win = new BrowserWindow({
-        width: 1840,
-        height: 1300,
+        width: 2040,
+        height: 1400,
         webPreferences: {
-            preload: path.join(__dirname, 'api.js'),
-            nodeIntegration: true,
+            contextIsolation: true,
+            sandbox: false,
+            preload: path.resolve(app.getAppPath(), 'src/preload.js')
         },
         autoHideMenuBar: true,
     })
-
-    win.loadFile('index.html')
+    win.loadFile('naver.html')
+    // win.loadFile('coupang.html')
     win.webContents.openDevTools()
 }
 

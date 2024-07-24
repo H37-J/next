@@ -1,0 +1,91 @@
+<!doctype html>
+<html class="dark h-full" lang="">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <script src="./tailwind.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .dot {
+            border-top: 1px solid rgb(229, 231, 235) !important;;
+            border-bottom: 1px solid rgb(229, 231, 235) !important;;
+        }
+
+        * {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        ::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+    <title>네이버 카페 크롤링</title>
+</head>
+<body class="bg-white dark:bg-black w-full h-full">
+<div class="grid grid-cols-4 gap-4 text-white p-2 h-full">
+    <div class="flex flex-col bg-neutral-900 rounded p-8">
+        <div class="flex flex-col">
+            <label for="paging" class="block mb-2 text-sm text-white">페이지수</label>
+            <div>
+                <input id="paging" value="1" placeholder="크롤링 할 페이지수를 입력 해주세요."
+                       class="bg-neutral-800 border border-neutral-800 rounded p-1.5 text-sm w-full outline-none focus:border-blue-500 focus:ring-blue-500"
+                       type="text">
+            </div>
+        </div>
+        <button id="naverButton" onclick="window.electronAPI.naveCrawaling()" class="w-full p-3 text-white bg-blue-500 rounded mt-8">브라우저 열기</button>
+        <button id="contentButton" onclick="window.electronAPI.getContent()" class="w-full p-3 text-white bg-blue-500 rounded mt-8">현재 페이지 가져오기</button>
+        <button id="excelButton" onclick="window.electronAPI.excel()" class="w-full p-3 text-white bg-emerald-600 rounded mt-8 hidden">엑셀 추출</button>
+
+        <div class="flex flex-1 border border-gray-600 mt-12 p-3 break-words">
+            <div id="terminal" class="space-y-2">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-span-3 relative overflow-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-white">
+            <thead class="text-xs uppercase bg-neutral-900 text-white">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    No
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    제목
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    작성자
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    작성일
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    조회
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+<script>
+    document.addEventListener('keydown', (event) => {
+        if(event.key === 'Enter') {
+            document.querySelector('#crawlButton').click()
+        }
+    })
+
+
+</script>
+
+</html>

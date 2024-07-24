@@ -1,10 +1,22 @@
-// 현재 시간 가져오기
-const currentDate = new Date();
+const puppeteer = require("puppeteer");
+const naveCrawaling = async () => {
+    datas = []
+    const url = 'https://cafe.naver.com/joonggonara'
 
-// 9시간을 밀리초로 변환 (9 * 60 * 60 * 1000)
-const NINE_HOURS = 9 * 60 * 60 * 1000;
+    const browser = await puppeteer.launch({
+        headless: false,
+        defaultViewport: {
+            width: 1440,
+            height: 1200
+        },
+        protocolTimeout: 620000000,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+    })
+    const page = await browser.newPage()
+    await page.goto('https://cafe.naver.com/joonggonara')
+    const element = await page.$('table')
+    console.log(element)
 
-// 9시간 추가
-const newDate = new Date(currentDate.getTime() + NINE_HOURS);
+}
 
-console.log(newDate);
+naveCrawaling()

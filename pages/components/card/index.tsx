@@ -3,12 +3,6 @@ import {Product} from "./type";
 import Image from 'next/image'
 import {GetStaticProps} from "next/types";
 import api from "./api";
-import {useTheme} from "next-themes";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSun} from "@fortawesome/free-solid-svg-icons/faSun";
-import {faMoon} from "@fortawesome/free-solid-svg-icons";
-import {useEffect} from "react";
-import ThemeButton from "../../theme/ThemeButton";
 
 interface Props {
     products: Product[]

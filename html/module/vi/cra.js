@@ -41,14 +41,13 @@ async function translateText(text, sourceLang, targetLang) {
 
 
 let count = 1;
-// 23118
-for(let i = 22855; i >= 1; i--) {
+// 23884
+for(let i = 23711; i >= 1; i--) {
     await page.setDefaultNavigationTimeout(0);
     const url = `https://www.92mj4.com/points-12-${i}-1.html`
     await page.goto(url)
 
     await delay(5000)
-
     const result = await page.evaluate(() => {
         return {
             title: document.title,
@@ -151,7 +150,7 @@ async function gif(title, allTime, dir, count) {
         for (let i = 0; i < 3; i++) {
 
             try {
-                const command = `cd ${title} && ffmpeg -ss ${arr[i]} -t 00:00:03 -i ${k}.mp4 -vf "fps=10,scale=320:-1:flags=lanczos" -c:v gif ${k}_${i}.gif`
+                const command = `cd ${title} && ffmpeg -ss ${arr[i]} -t 00:00:02 -i ${k}.mp4 -vf "fps=5,scale=320:-1:flags=lanczos" -c:v gif ${k}_${i}.gif`
                 console.log(command)
                 const child = exec(command, {stdio: 'pipe'});
                 child.stdout.on('data', (data) => {

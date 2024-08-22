@@ -15,7 +15,7 @@ const Header = () => {
     return (
         <>
             <nav id="header"
-                 className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+                 className="fixed top-0 z-50 w-full border-b border-gray-200 dark:border-stone-900">
                 <div className="px-3 py-3 lg:px-5 lg:pl-3">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center justify-start rtl:justify-end">
@@ -38,7 +38,7 @@ const Header = () => {
                         <div className="flex items-center relative">
                             <div className="me-4">
                                 <label htmlFor="default-search"
-                                       className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                       className="mb-2 text-sm font-medium text-black sr-only dark:text-white">Search</label>
                                 <div className="relative">
                                     <div
                                         className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -49,7 +49,7 @@ const Header = () => {
                                         </svg>
                                     </div>
                                     <input type="text" id="default-search"
-                                           className="outline-none w-80 h-10 block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white "
+                                           className="outline-none w-80 h-10 block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 dark:bg-neutral-900 dark:border-stone-900 dark:placeholder-white dark:text-white"
                                            placeholder="검색어를 입력 해주세요" required/>
 
                                 </div>

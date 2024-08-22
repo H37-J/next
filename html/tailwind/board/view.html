@@ -1,0 +1,1112 @@
+<!doctype html>
+<html class="dark h-full" lang="">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/java/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/selection/active-line.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/edit/matchbrackets.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/monokai.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet"/>
+    <script src="../tailwind.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
+    <style>
+        .dot {
+            border-top: 1px solid rgb(229, 231, 235) !important;;
+            border-bottom: 1px solid rgb(229, 231, 235) !important;;
+        }
+
+        .ql-toolbar.ql-snow {
+            border: 1px solid rgb(23, 23, 23) !important;
+        }
+
+        #editor {
+            border: 1px solid rgb(23, 23, 23) !important;
+        }
+
+        body {
+            -ms-overflow-style: none;
+        }
+
+        ::-webkit-scrollbar {
+            display: none;
+        }
+
+    </style>
+    <title>H</title>
+</head>
+<body class="bg-white dark:bg-neutral-950 w-full h-full">
+
+<div id="header"
+     class="z-0 grid grid-rows-1 grid-cols-5 items-center fixed top-0 w-full border-b text-black bg-white border-gray-200 p-2 px-8 pl-2 pr-2 sm:pr-6
+      dark:bg-neutral-950 dark:border-neutral-900 dark:text-white">
+    <div class="flex item-center col-span-3 space-x-3">
+        <div class="block sm:hidden">
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            </svg>
+        </div>
+        <div>H</div>
+    </div>
+    <div class="flex justify-end item-center col-span-2">
+        <button type="button" class="rounded bg-teal-600 text-white p-1.5 px-4 fw-boldest text-sm">로그인</button>
+    </div>
+</div>
+
+<div id="side" class="fixed top-0 left-0 z-40 w-64 rounded-2xl hidden sm:block h-screen border-r border-neutral-900 z-20 bg-zinc-950">
+    <div class="flex item-center pl-10 mt-3 mb-8">
+        <div class="block sm:hidden">
+            <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path clip-rule="evenodd" fill-rule="evenodd"
+                      d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+            </svg>
+        </div>
+        <div class="text-white text-xl">H</div>
+    </div>
+    <div class="flex flex-col space-y-1">
+<!--        <div class="pl-10 text-zinc-200 text-sm mb-1">PAGES</div>-->
+        <div class="flex flex-col">
+            <a data-toggle-target="" href="#" class="w-full hover:bg-neutral-900 flex items-center py-3 pl-10 relative">
+                <div href="#" class="text-white font-bold">
+                    커뮤니티
+                </div>
+                <div class="flex flex-1 justify-end">
+                    <svg fill="currentColor" class="w-3 h-3 me-4 text-neutral-300"
+                         viewBox="0 0 12 12">
+                        <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                    </svg>
+                </div>
+            </a>
+            <div class="flex flex-col text-zinc-200 text-sm">
+                <a href="#" class="pl-10 py-3 hover:bg-neutral-900">자유게시판</a>
+                <a href="#" class="pl-10 py-3 hover:bg-neutral-900">질문게시판</a>
+                <a href="#" class="pl-10 py-3 hover:bg-neutral-900">익명게시판</a>
+            </div>
+        </div>
+        <a href="#" class="w-full hover:bg-neutral-900 flex items-center py-3 pl-10">
+            <div href="#" class="text-white font-bold">
+                모임게시판
+            </div>
+            <div class="flex flex-1 justify-end">
+                <svg fill="currentColor" class="w-3 h-3 me-4 text-neutral-300"
+                     viewBox="0 0 12 12">
+                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="#" class="w-full hover:bg-neutral-900 flex items-center py-3 pl-10">
+            <div href="#" class="text-white font-bold">
+                인연찾기
+            </div>
+            <div class="flex flex-1 justify-end">
+                <svg fill="currentColor" class="w-3 h-3 me-4 text-neutral-300"
+                     viewBox="0 0 12 12">
+                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path>
+                </svg>
+            </div>
+        </a>
+
+        <!--        <a href="#" class="text-white w-full hover:bg-neutral-900 px-3 py-3">-->
+        <!--            <svg data-v-485eaaba="" viewBox="0 0 24 24" width="1.2em" height="1.2em" class="svg-icons">-->
+        <!--                <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"-->
+        <!--                      d="M9 17H7A5 5 0 0 1 7 7h2m6 0h2a5 5 0 1 1 0 10h-2m-7-5h8"></path>-->
+        <!--            </svg>-->
+        <!--        </a>-->
+        <!--        <a href="#" class="text-white w-full hover:bg-neutral-900 px-3 py-3">-->
+        <!--            <svg data-v-485eaaba="" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="1.2em" height="1.2em"-->
+        <!--                 viewBox="0 0 21 24" class="svg-icons">-->
+        <!--                <path fill="currentColor"-->
+        <!--                      d="M12.731 2.751 17.666 5.6a2.138 2.138 0 1 1 2.07 3.548l-.015.003v5.7a2.14 2.14 0 1 1-2.098 3.502l-.002-.002-4.905 2.832a2.14 2.14 0 1 1-4.079.054l-.004.015-4.941-2.844a2.14 2.14 0 1 1-2.067-3.556l.015-.003V9.15a2.14 2.14 0 1 1 1.58-3.926l-.01-.005c.184.106.342.231.479.376l.001.001 4.938-2.85a2.14 2.14 0 1 1 4.096.021l.004-.015zm-.515.877a.766.766 0 0 1-.057.057l-.001.001 6.461 11.19c.026-.009.056-.016.082-.023V9.146a2.14 2.14 0 0 1-1.555-2.603l-.003.015.019-.072zm-3.015.059-.06-.06-4.946 2.852A2.137 2.137 0 0 1 2.749 9.12l-.015.004-.076.021v5.708l.084.023 6.461-11.19zm2.076.507a2.164 2.164 0 0 1-1.207-.004l.015.004-6.46 11.189c.286.276.496.629.597 1.026l.003.015h12.911c.102-.413.313-.768.599-1.043l.001-.001L11.28 4.194zm.986 16.227 4.917-2.838a1.748 1.748 0 0 1-.038-.142H4.222l-.021.083 4.939 2.852c.39-.403.936-.653 1.54-.653.626 0 1.189.268 1.581.696l.001.002z"></path>-->
+        <!--            </svg>-->
+        <!--        </a>-->
+        <!--        <a href="#" class="text-white w-full hover:bg-neutral-900 px-3 py-3">-->
+        <!--            <svg data-v-485eaaba="" viewBox="0 0 24 24" width="1.2em" height="1.2em" class="svg-icons">-->
+        <!--                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">-->
+        <!--                    <circle cx="12" cy="12" r="10"></circle>-->
+        <!--                    <path d="M12 2a14.5 14.5 0 0 0 0 20a14.5 14.5 0 0 0 0-20M2 12h20"></path>-->
+        <!--                </g>-->
+        <!--            </svg>-->
+        <!--        </a>-->
+        <!--        <a href="#" class="text-white w-full hover:bg-neutral-900 px-3 py-3">-->
+        <!--            <svg data-v-485eaaba="" viewBox="0 0 24 24" width="1.2em" height="1.2em" class="svg-icons">-->
+        <!--                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">-->
+        <!--                    <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>-->
+        <!--                    <circle cx="12" cy="12" r="3"></circle>-->
+        <!--                </g>-->
+        <!--            </svg>-->
+        <!--        </a>-->
+
+
+    </div>
+</div>
+
+
+<div id="content" class="flex flex-col flex-1
+ml-0 sm:ml-64 pt-12 text-white h-full overflow-x-auto">
+    <div class="bg-neutral-950 py-2 p-1 outline-0 fw-boldest border-b border-neutral-900 text-md font-extrabold"
+         id="title">
+        플레이 파트너 구해요
+    </div>
+    <div id="view" class="text-md p-1 pt-2 pb-12">
+        <p>안녕하세요</p>
+        <p>29 184 74 멜섭입니다</p>
+        <img src="./1.jpg" class="h-auto">
+    </div>
+
+    <div class="border-t border-neutral-900 p-1 pb-4 mb-72">
+        <h1 class="font-extrabold text-xl px-1 mb-3">댓글 14개</h1>
+        <div id="comment" class="flex flex-col space-y-3 mb-3">
+            <div class="flex">
+                <div>
+                    <img src="./1.jpg" class="rounded-full w-16 h-16">
+                </div>
+                <div class="ml-2">
+                    <div class="font-extrabold">nill <span class="font-extralight text-sm" style="font-size:12px">2024-08-05</span>
+                    </div>
+                    <div class="mt-0.5">안녕하세요</div>
+                </div>
+                <div class="flex flex-1 justify-end mr-2 text-sm space-x-2">
+                    <div>답글</div>
+                    <div>삭제</div>
+                    <div>추천(0)</div>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <img src="./1.jpg" class="rounded-full w-16 h-16">
+                </div>
+                <div class="ml-2">
+                    <div class="font-extrabold">nill <span class="font-extralight text-sm" style="font-size:12px">2024-08-05</span>
+                    </div>
+                    <div class="mt-0.5">안녕하세요</div>
+                </div>
+                <div class="flex flex-1 justify-end mr-2 text-sm space-x-2">
+                    <div>답글</div>
+                    <div>삭제</div>
+                    <div>추천(0)</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="editor" class="relative">
+        </div>
+        <div class="flex flex-1 justify-end">
+            <button type="button" class="bg-teal-600 p-2 px-6 rounded-md mb-3 mr-1 mt-2">댓글 작성</button>
+        </div>
+
+    </div>
+
+    <div class="grid grid-cols-3 text-sm block sm:hidden sm:ml-0.5 sm:pt-3 border-t border-neutral-900">
+        <div class="col-span-1 sm:hidden flex border-r border-b border-neutral-900 items-center bg-neutral-950 rounded text-neutral-700 pl-1 py-2 outline-0 focus:border-slate-900">
+            <svg viewBox="0 0 24 24" width="1.2em" height="1.2em" class="svg-icons mr-2">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                   stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21l-4.3-4.3"></path>
+                </g>
+            </svg>
+            <input id="search" type="text" class="item bg-neutral-950 w-full outline-0 text-sm text-white">
+        </div>
+        <div class="flex items-center col-span-2 w-full sm:hidden border-b border-neutral-900">
+            <label for="countries" class="block text-sm font-medium text-gray-900 dark:text-white"></label>
+            <select id="countries" class="bg-neutral-950 w-full outline-0 text-right align-center">
+                <option selected>자유게시판</option>
+                <option value="US">일기</option>
+                <option value="CA">익명</option>
+                <option value="CA">모임소식</option>
+                <option value="CA">질문게시판</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="relative flex flex-col sm:hidden">
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="grid grid-cols-4 border-b border-neutral-900 cursor-pointer transition-all duration-[0.35s] ease-in-out hover:scale-105">
+            <div class="col-span-1">
+                <a href="#">
+                    <img class="h-20 max-w-full"
+                         src="https://www.wfla.com/wp-content/uploads/sites/71/2023/05/GettyImages-1389862392.jpg?w=2560&h=1440&crop=1"/>
+                </a>
+            </div>
+            <div class="col-span-3 ml-1 flex flex-col justify-center relative">
+                <div>안녕하세요 멜섭이에요 <span class="text-rose-900 font-extrabold">(15)</span></div>
+                <div class="flex items-center space-x-1 text-sm">
+                    <div class="pr-1 border-r border-neutral-900">nill</div>
+                    <div class="pr-1 border-r border-neutral-900">2024-01-01</div>
+                    <div class="flex items-center space-x-1">
+                        <svg class="text-rose-600 mt-0.5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                             width="1.0em" height="1.0em" viewBox="0 0 24 24">
+                            <path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/>
+                        </svg>
+                        <div>+103</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden sm:block">
+        <a href="#" class="pb-2 px-1 sm:px-8 border-teal-500 hover:text-stone-600 sm:border-b">자유</a>
+        <a href="#" class="pb-2 px-1 sm:px-8 border-teal-500 hover:border-b hover:text-stone-600">일기</a>
+        <a href="#" class="pb-2 px-1 sm:px-8 border-teal-500 hover:border-b hover:text-stone-600">익명</a>
+        <a href="#" class="pb-2 px-1 sm:px-8 border-teal-500 hover:border-b hover:text-stone-600">모임소식</a>
+        <a href="#" class="pb-2 px-1 sm:px-8 border-teal-500 hover:border-b hover:text-stone-600">질문게시판</a>
+    </div>
+
+    <div class="relative p-6 pt-0 sm:pt-6 px-0 hidden sm:block">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-white table-fixed">
+            <thead class="text-xs text-gray-900 uppercase dark:text-white border-b border-neutral-900">
+            <tr>
+                <th scope="col" class="px-6 pb-2 w-7/12">
+                    제목
+                </th>
+                <th scope="col" class="px-6 pb-2 w-2/12">
+                    작성자
+                </th>
+                <th scope="col" class="px-6 pb-2 w-2/12">
+                    작성일
+                </th>
+                <th scope="col" class="px-6 pb-2  w-1/12">
+                    조회
+                </th>
+                <th scope="col" class="px-6 pb-2 w-1/12">
+                    추천수
+                </th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-neutral-900">
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            <tr class="hover:bg-zinc-950 hover:cursor-pointer">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    홍대 팁
+                </th>
+                <td class="px-6 py-4">
+                    235412
+                </td>
+                <td class="px-6 py-4">
+                    2024-01-03
+                </td>
+                <td class="px-6 py-4">
+                    32
+                </td>
+                <td class="px-6 py-4">
+                    1
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="border-b border-neutral-900 w-full">
+        </div>
+
+        <div class="grid grid-cols-3 flex items-center mt-4">
+            <div class="col-span-1"></div>
+            <div class="col-span-1 space-x-4 flex justify-center">
+                <a href="#" class="hover:text-teal-500">1</a>
+                <a href="#" class="hover:text-teal-500">2</a>
+                <a href="#" class="hover:text-teal-500">3</a>
+                <a href="#" class="hover:text-teal-500">4</a>
+                <a href="#" class="hover:text-teal-500">5</a>
+                <a href="#" class="hover:text-teal-500">6</a>
+                <a href="#" class="hover:text-teal-500">7</a>
+                <a href="#" class="hover:text-teal-500">8</a>
+                <a href="#" class="hover:text-teal-500">9</a>
+                <a href="#" class="hover:text-teal-500">10</a>
+            </div>
+            <div class="col-span-1 justify-end mr-8 hidden md:flex">
+                <div class="flex item-center bg-zinc-900 rounded text-neutral-700 pl-1 py-1 outline-0 focus:border-slate-900 w-64">
+                    <svg viewBox="0 0 24 24" width="1.2em" height="1.2em" class="svg-icons mr-2">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                           stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21l-4.3-4.3"></path>
+                        </g>
+                    </svg>
+                    <input type="text" class="bg-neutral-900 w-full outline-0 text-sm text-white">
+                </div>
+                <label for="countries" class="block text-sm font-medium text-gray-900 dark:text-white"></label>
+                <select id="countries" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500
+                    block dark:bg-zinc-900 dark:border-zinc-900 dark:placeholder-zinc-900 dark:text-white
+                    dark:focus:ring-blue-500 dark:focus:border-zinc-900 ml-2 outline-0">
+                    <option selected>제목</option>
+                    <option value="US">내용</option>
+                    <option value="CA">작성자</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+
+<script>
+    const quill = new Quill("#editor", {
+        theme: "snow",
+        modules: {
+            toolbar: {
+                container: [['image', 'video', 'bold', 'italic', 'underline', {'align': []}, {'size': ['small', false, 'large', 'huge']}]]
+            }
+        }
+    });
+    var titleConfig = {
+        'toolbar': [
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+        ]
+    };
+</script>
+</html>

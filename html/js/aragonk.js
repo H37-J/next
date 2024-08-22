@@ -1,10 +1,10 @@
 const myHeaders = new Headers()
-const di = 'MC0GCCaeSsIb3DQcdfeeIJxzczadsadaAyEAoagcds7odasdaNoUbVeqwdsdf4tpoG4ccUANevbm2tVEb%2Bz12urgEUaHnw%3D'
-const ci = 'uUd1zsd0adwc0Tdlfedsa34xeczxcwdsaddassIQFtcfUFBLlewqGvXHVG6hu3zsKdsSJgKcuR7WCWpPNJH6PD1qCZBnmz5ZWmGYwCE8QzBblv%2F%2F%2FTA%3D%3D'
-const name = '김수지'
-const birthday = '20010402'
-const cel = '01013403220'
-const sex = '2'
+const di = 'MC0aGCCqGSdsIb4DQIcJryCAog7oNcoUbVf4tposGr4ccUCNevbm2tVEb%2Bz32urgEUaHxw%3D'
+const ci = 'uUag1zd0md4dd44xIdvFfcdfUFBLaGvXdHVG6hxu3zrsKSRgKcuR7WCWpPNJH4PD1qCZBamz5ZWmGYwCE8QzBblv%2F%2F%2FTS%3D%3D'
+const name = '김지후'
+const birthday = '19990303'
+const cel = '01041349103'
+const sex = '1'
 
 myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 const urlencoded = new URLSearchParams();
@@ -37,7 +37,7 @@ fetch("https://aragonk.com/xe/modules/join_extend/skins/default_okname/safe_hs_c
             name: name,
             di: di,
             birthday: birthday,
-            age: 23,
+            age: 26,
             sex: sex,
             cellcompany: 3,
             cell: cel,
@@ -50,63 +50,3 @@ fetch("https://aragonk.com/xe/modules/join_extend/skins/default_okname/safe_hs_c
     })
     .catch(error => console.log('error', error));
 
-const params = {
-    allow_mailing
-        :
-        "Y",
-    birthday
-        :
-        "20010402",
-    email_address
-        :
-        "norwenr@naver.com",
-    find_account_answer
-        :
-        "rwerw",
-    find_account_question
-        :
-        "1",
-    nick_name
-        :
-        "tt11111",
-    open_id
-        :
-        "Y",
-    open_reg
-        :
-        "Y",
-    open_sex
-        :
-        "Y",
-    open_sm
-        :
-        "Y",
-    password
-        :
-        "star8903",
-    password2
-        :
-        "star8903",
-    reg
-        :
-        "서울",
-    sex
-        :
-        "여성",
-    sm
-        :
-        "Dominant",
-    user_id
-        :
-        "rnowenr",
-    user_name
-        :
-        "김수지",
-    _filter
-        :
-        "signup"
-}
-
-const responses = ['error', 'message', 'redirect_url']
-
-exec_xml('member', 'procMemberInsert', params, '', responses, params, '')

@@ -1,20 +1,20 @@
-
 const Container = () => {
     return (
         <>
-            <div className="p-8 sm:ml-64 min-h-screen mt-14 relative">
+            <div style={{height: "90vh"}} className="sm:ml-64 z-0 mt-16 relative overflow-auto">
                 <div id="authentication-modal"
-                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+                     className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <div className="relative p-4 w-full max-h-full">
                         <div
-                            className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600">
+                            className="w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-neutral-900 dark:border-stone-900">
                             <div style={{width: 650}}
-                                 className="code-syntax-wrapper px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
+                                 className="code-syntax-wrapper px-4 py-2 bg-white rounded-t-lg dark:bg-neutral-900">
                     <textarea id="comment" rows={8}
-                              className="outline-none resize-none w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-800 dark:text-white "
+                              className="outline-none resize-none w-full px-0 text-sm text-gray-900 bg-white border-0 dark:bg-neutral-900 dark:text-white "
                               placeholder="Write a comment..." required></textarea>
                             </div>
-                            <div className="flex items-center justify-between px-3 py-2 border-t dark:border-gray-600">
+                            <div
+                                className="flex items-center justify-between px-3 py-2 border-t dark:border-neutral-800">
                                 <button type="submit"
                                         className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                                     Post comment

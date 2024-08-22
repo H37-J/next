@@ -23,9 +23,9 @@ page.on('dialog', async dialog => {
 });
 
 await page.goto('https://www.ondisk.co.kr/index.php')
-await page.click('#footer_appVersion > div > a:nth-child(3)')
-await delay(3000)
-await page.goto('https://www.ondisk.co.kr/index.php')
+// await page.click('#footer_appVersion > div > a:nth-child(3)')
+// await delay(3000)
+// await page.goto('https://www.ondisk.co.kr/index.php')
 await delay(3000)
 await page.type('#mb_id', 'these9902');
 await page.type('#page-login > form > fieldset > div > p.ctrl.ctrl-pw > input', 'star8903');
@@ -34,7 +34,7 @@ await page.click('#page-login > form > fieldset > div > p.btn-login > input[type
 await page.waitForNavigation()
 
 await delay(2000)
-await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&doc=&search=&type=seller&list_max=20&code_cate=&sch_state=&orderis=&sort=&code=&p=13')
+await page.goto('https://ondisk.co.kr/index.php?mode=my_page&sm=regist&orderis=purchase_cnt&sort=DESC&code_cate=all&code=all&sch_state=&list_max=20&p=3')
 
 await delay(2000)
 await page.click('#mypage_myinfo > table > tbody > tr:nth-child(3) > td:nth-child(1) > input[type=checkbox]')

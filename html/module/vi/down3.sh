@@ -11,9 +11,9 @@ echo "$end"
 
 if [ "$i" -eq "$2" ]
     then
-cmd="ffmpeg -i $1\?start\=$start\&end\=$end -crf 18 -b:v 5000k -filter:v fps=60 -vf scale=2160:1440 -c:v: h264_nvenc -crf 23 -threads 0 $i.mp4"
+cmd="ffmpeg -i $1\?start\=$start\&end\=$end -c:v: h264_nvenc -crf 23 -threads 0 $i.mp4"
 else
-cmd="ffmpeg -i $1\?start\=$start\&end\=$end -crf 18 -b:v 5000k -filter:v fps=60 -vf scale=2160:1440 -c:v: h264_nvenc -crf 23 -threads 0 $i.mp4 &"
+cmd="ffmpeg -i $1\?start\=$start\&end\=$end -c:v: h264_nvenc -crf 23 -threads 0 $i.mp4 &"
 fi
 
 eval $cmd

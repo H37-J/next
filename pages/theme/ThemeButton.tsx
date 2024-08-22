@@ -2,7 +2,6 @@ import {useTheme} from "next-themes";
 import {faSun} from "@fortawesome/free-solid-svg-icons/faSun";
 import {faMoon} from "@fortawesome/free-solid-svg-icons";
 import {useEffect, useState} from   "react";
-import Icon from "../utils/icon";
 
 
 const ThemeButton = () => {
@@ -21,13 +20,7 @@ const ThemeButton = () => {
             dark:hover:bg-neutral-700" onClick={() => {
                 setTheme(theme === 'dark' ? 'light' : 'dark');
             }}>
-                {
-                    loading && theme === 'dark' ? (
-                        <Icon name={faSun}/>
-                    ) : (
-                        <Icon name={faMoon}/>
-                    )
-                }
+
             </button>
         </>
     )
